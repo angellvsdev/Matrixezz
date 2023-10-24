@@ -15,9 +15,7 @@ class OperationRequest {
         let operation_dom_result = document.getElementById('result')
 
         return fetch(this.PATH)
-            .then(resp => {
-                resp.text()
-            })
+            .then(resp => resp.text())
             .then(finalVal => {
                 operation_dom_result.style.display = "block"
                 operation_dom_result.textContent = finalVal;
