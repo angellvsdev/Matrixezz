@@ -14,12 +14,12 @@ class OperationRequest {
         this.PATH = `${this.BASE_PATH}${this.OPERATION_PROTOCOL}?num1=${this.CONST_FIRST_VALUE}&num2=${this.CONST_SECOND_VALUE}`;
         let operation_dom_result = document.getElementById('result')
 
-        if (typeof this.CONST_FIRST_VALUE !== Number) {
+        if (typeof this.CONST_FIRST_VALUE !== 'number') {
             document.getElementById('data-01').textContent = '¡Error! Debe ingresar un número válido.'
             return document.getElementById('data-01').style.background = '#8d2828'
         }
         
-        if (typeof this.CONST_SECOND_VALUE !== Number) {
+        if (typeof this.CONST_SECOND_VALUE !== 'number') {
             document.getElementById('data-02').textContent = '¡Error! Debe ingresar un número válido.'
             return document.getElementById('data-02').style.background = '#8d2828'
         }
