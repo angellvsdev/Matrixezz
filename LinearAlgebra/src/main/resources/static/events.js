@@ -14,23 +14,23 @@ class OperationRequest {
         this.PATH = `${this.BASE_PATH}${this.OPERATION_PROTOCOL}?num1=${this.CONST_FIRST_VALUE}&num2=${this.CONST_SECOND_VALUE}`;
         let operation_dom_result = document.getElementById('result')
 
+        if (typeof this.CONST_FIRST_VALUE === null) {
+            document.getElementById('data-01').textContent = '¡Error! Debe ingresar un número válido.'
+            return document.getElementById('data-01').style.background = '#8d2828'
+        }
+        
+        if (typeof this.CONST_SECOND_VALUE === null) {
+            document.getElementById('data-02').textContent = '¡Error! Debe ingresar un número válido.'
+            return document.getElementById('data-02').style.background = '#8d2828'
+        }
+
         return fetch(this.PATH)
             .then(resp => {
-                if (typeof this.CONST_FIRST_VALUE === null) {
-                    document.getElementById('data-01').textContent = '¡Error! Debe ingresar un número válido.'
-                    return document.getElementById('data-01').style.background = '#8d2828'
-                }
-                
-                if (typeof this.CONST_SECOND_VALUE === null) {
-                    document.getElementById('data-02').textContent = '¡Error! Debe ingresar un número válido.'
-                    return document.getElementById('data-02').style.background = '#8d2828'
-                }
-
                 resp.text()
             })
             .then(finalVal => {
                 operation_dom_result.style.display = "block"
-                operation_dom_result.textContent =+ 'Resultado Operacional:' + finalVal;
+                operation_dom_result.textContent = finalVal;
             })
             .catch(error => {
                 if (error.response.status >= 400) {
