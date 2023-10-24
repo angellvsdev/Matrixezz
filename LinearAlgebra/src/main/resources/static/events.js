@@ -21,10 +21,14 @@ class OperationRequest {
                 operation_dom_result.textContent = finalVal;
             })
             .catch(error => {
-                if (error.response.status >= 400) {
-                    operation_dom_result.style.display = "block"
-                    operation_dom_result.style.background = "#8d2828"
-                    operation_dom_result.textContent = `Error de servidor: Error ${error.response.status}.`
+                if (error instanceof Response) {
+                    if (error.status >= 400) {
+                        operation_dom_result.style.display = "block";
+                        operation_dom_result.style.background = "#8d2828";
+                        operation_dom_result.textContent = `Error de servidor: Error ${error.status}.`;
+                    }
+                } else {
+                    console.error(error)
                 }
             });
     }
