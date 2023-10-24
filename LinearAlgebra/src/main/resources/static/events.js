@@ -30,7 +30,7 @@ class OperationRequest {
             })
             .then(finalVal => {
                 operation_dom_result.style.display = "block"
-                operation_dom_result.textContent = `Resultado Operacional: ${finalVal}`;
+                operation_dom_result.textContent =+ 'Resultado Operacional:' + finalVal;
             })
             .catch(error => {
                 if (error.response.status >= 400) {
