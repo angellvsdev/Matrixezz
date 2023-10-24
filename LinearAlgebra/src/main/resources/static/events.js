@@ -16,12 +16,12 @@ class OperationRequest {
 
         return fetch(this.PATH)
             .then(resp => {
-                if (typeof this.CONST_FIRST_VALUE === null || typeof this.CONST_FIRST_VALUE !== Number) {
+                if (typeof this.CONST_FIRST_VALUE === null) {
                     document.getElementById('data-01').textContent = '¡Error! Debe ingresar un número válido.'
                     return document.getElementById('data-01').style.background = '#8d2828'
                 }
                 
-                if (typeof this.CONST_SECOND_VALUE === null || typeof this.CONST_SECOND_VALUE !== Number) {
+                if (typeof this.CONST_SECOND_VALUE === null) {
                     document.getElementById('data-02').textContent = '¡Error! Debe ingresar un número válido.'
                     return document.getElementById('data-02').style.background = '#8d2828'
                 }
@@ -33,9 +33,11 @@ class OperationRequest {
                 operation_dom_result.textContent = `Resultado Operacional: ${finalVal}`;
             })
             .catch(error => {
-                operation_dom_result.style.display = "block"
-                operation_dom_result.style.background = "#8d2828"
-                operation_dom_result.textContent = `Error de servidor: Error ${error.response.status}.`
+                if (error.response.status >= 400) {
+                    operation_dom_result.style.display = "block"
+                    operation_dom_result.style.background = "#8d2828"
+                    operation_dom_result.textContent = `Error de servidor: Error ${error.response.status}.`
+                }
             });
     }
 }
