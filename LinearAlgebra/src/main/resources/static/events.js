@@ -18,7 +18,7 @@ class OperationRequest {
             .then(resp => resp.text())
             .then(finalVal => {
                 operation_dom_result.style.display = "block"
-                operation_dom_result =+ finalVal;
+                operation_dom_result.textContent =+ finalVal;
             })
             .catch(error => {
                 console.log(error);
