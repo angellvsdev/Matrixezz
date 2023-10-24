@@ -14,6 +14,14 @@ class OperationRequest {
         this.PATH = `${this.BASE_PATH}${this.OPERATION_PROTOCOL}?num1=${this.CONST_FIRST_VALUE}&num2=${this.CONST_SECOND_VALUE}`;
         let operation_dom_result = document.getElementById('result')
 
+        if (typeof this.CONST_FIRST_VALUE === null || typeof this.CONST_FIRST_VALUE !== Number) {
+            return document.getElementById('data-01').style.background = '#8d2828'
+        }
+        
+        if (typeof this.CONST_SECOND_VALUE === null || typeof this.CONST_SECOND_VALUE !== Number) {
+            return document.getElementById('data-02').style.background = '#8d2828'
+        }
+
         return fetch(this.PATH)
             .then(resp => resp.text())
             .then(finalVal => {
