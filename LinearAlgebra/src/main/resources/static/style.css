@@ -76,4 +76,9 @@ body {
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   border: none;
   color: #F2F2F2;
+}
+#calculator #result {
+  font-weight: bold;
+  color: #F2F2F2;
+  display: none;
 }/*# sourceMappingURL=style.css.map */

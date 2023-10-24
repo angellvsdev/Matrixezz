@@ -12,11 +12,13 @@ class OperationRequest {
         this.CONST_SECOND_VALUE = document.getElementById('data-02').value;
 
         this.PATH = `${this.BASE_PATH}${this.OPERATION_PROTOCOL}?num1=${this.CONST_FIRST_VALUE}&num2=${this.CONST_SECOND_VALUE}`;
+        let operation_dom_result = document.getElementById('result')
 
         return fetch(this.PATH)
             .then(resp => resp.text())
             .then(finalVal => {
-                console.log(finalVal);
+                operation_dom_result.style.display = "block"
+                operation_dom_result =+ finalVal;
             })
             .catch(error => {
                 console.log(error);
