@@ -15,13 +15,27 @@ class OperationRequest {
         let operation_dom_result = document.getElementById('result')
 
         return fetch(this.PATH)
-            .then(resp => resp.text())
+            .then(resp => {
+                if (typeof this.CONST_FIRST_VALUE === null || typeof this.CONST_FIRST_VALUE !== Number) {
+                    document.getElementById('data-01').textContent = '¡Error! Debe ingresar un número válido.'
+                    return document.getElementById('data-01').style.background = '#8d2828'
+                }
+                
+                if (typeof this.CONST_SECOND_VALUE === null || typeof this.CONST_SECOND_VALUE !== Number) {
+                    document.getElementById('data-02').textContent = '¡Error! Debe ingresar un número válido.'
+                    return document.getElementById('data-02').style.background = '#8d2828'
+                }
+
+                resp.text()
+            })
             .then(finalVal => {
                 operation_dom_result.style.display = "block"
-                operation_dom_result.textContent =+ finalVal;
+                operation_dom_result.textContent = `Resultado Operacional: ${finalVal}`;
             })
             .catch(error => {
-                console.log(error);
+                operation_dom_result.style.display = "block"
+                operation_dom_result.style.background = "#8d2828"
+                operation_dom_result.textContent = `Error de servidor: Error ${error.response.status}.`
             });
     }
 }

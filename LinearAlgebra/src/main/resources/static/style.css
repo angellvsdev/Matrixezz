@@ -81,4 +81,19 @@ body {
   font-weight: bold;
   color: #F2F2F2;
   display: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 26px;
+  align-self: center;
+  background: #dfb26e;
+  border-radius: 10px;
+}
+
+.elements_transition_factor {
+  transition-property: background;
+  transition-delay: 0.5s;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }/*# sourceMappingURL=style.css.map */

@@ -65,7 +65,7 @@ body {
             margin: 5px 5px;
             cursor: pointer;
             box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-
+            
             i {
                 margin-right: 5px;
             }
@@ -94,5 +94,18 @@ body {
         font-weight: bold;
         color: #F2F2F2;
         display: none;
+        width: fit-content;
+        height: fit-content;
+        padding: 26px;
+        align-self: center;
+        background: $primary-color;
+        border-radius: 10px;
     }
+}
+
+.elements_transition_factor {
+    transition-property: background;
+    transition-delay: .5s;
+    transition-duration: .5s;
+    transition-timing-function: ease-in-out;
 }
