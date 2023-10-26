@@ -95,7 +95,7 @@ public class Matrix {
 		}
 		return result;
 	}
-	public Matrix multi(Matrix otherMatrix) {
+	public Matrix mult(Matrix otherMatrix) {
 	    if (this.cols != otherMatrix.rows) {
 	        throw new IllegalArgumentException("La matriz A debe tener la misma cantidad de columnas que las filas de la matriz B");
 	    }

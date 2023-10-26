@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/matrix")
 public class MatrixController {
-    @PostMapping("/add")
-    public Map<String, Object> addMatrices(@RequestBody MatrixRequest request) {
+    @PostMapping("/sum")
+    public Map<String, Object> sumMatrices(@RequestBody MatrixRequest request) {
         // Parse and create two Matrix instances from the request
         Matrix matrixA = parseMatrix(request.getMatrixAData());
         Matrix matrixB = parseMatrix(request.getMatrixBData());
@@ -24,12 +24,46 @@ public class MatrixController {
         Map<String, Object> response = new HashMap<>();
         response.put("rows", result.getRows());
         response.put("cols", result.getCols());
-        response.put("data", result.getArrayData()); // Asumiendo que tienes un método getData en la clase Matrix
+        response.put("data", result.getArrayData());
+
+        return response;
+    }
+    @PostMapping("/subst")
+    public Map<String, Object> substMatrices(@RequestBody MatrixRequest request) {
+        // Parse and create two Matrix instances from the request
+        Matrix matrixA = parseMatrix(request.getMatrixAData());
+        Matrix matrixB = parseMatrix(request.getMatrixBData());
+
+        // Perform matrix addition
+        Matrix result = matrixA.subt(matrixB);
+
+        // Preparar la respuesta en formato JSON
+        Map<String, Object> response = new HashMap<>();
+        response.put("rows", result.getRows());
+        response.put("cols", result.getCols());
+        response.put("data", result.getArrayData());
+
+        return response;
+    }
+    @PostMapping("/mult")
+    public Map<String, Object> multMatrices(@RequestBody MatrixRequest request) {
+        // Parse and create two Matrix instances from the request
+        Matrix matrixA = parseMatrix(request.getMatrixAData());
+        Matrix matrixB = parseMatrix(request.getMatrixBData());
+
+        // Perform matrix addition
+        Matrix result = matrixA.mult(matrixB);
+
+        // Preparar la respuesta en formato JSON
+        Map<String, Object> response = new HashMap<>();
+        response.put("rows", result.getRows());
+        response.put("cols", result.getCols());
+        response.put("data", result.getArrayData());
 
         return response;
     }
 	private Matrix parseMatrix(String matrixData) {
-
+		
 	    String[] rowStrings = matrixData.split(";");
 	    
 	    // Determinar el número de filas y columnas
