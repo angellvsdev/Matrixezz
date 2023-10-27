@@ -1,7 +1,5 @@
 package testing;
 
-
-
 public class Matrix {
 	private int rows;
 	private int cols;
@@ -23,18 +21,11 @@ public class Matrix {
 	public void setCols(int cols) {
 		this.cols = cols;
 	}
-	private void validateIndices(int row, int col) {
-	    if (row < 0 || row >= rows || col < 0 || col >= cols) {
-	        throw new IllegalArgumentException("Índices fuera de rango");
-	    }
-	}
 	public double getData(int row, int col) {
-		validateIndices(row, col);
-		return data[row][col];
+		if (row <0 || row >= rows || col < 0 || col >= cols) {
+			throw new IllegalArgumentException("Indices fuera de rango");
 	}
-	public void setData(int row, int col, double value) {
-		validateIndices(row, col);
-		data[row][col]=value;
+		return data[row][col];
 	}
 	public double[][] getArrayData(){
 	    double[][] matrixData = new double[rows][cols];
@@ -63,10 +54,16 @@ public class Matrix {
             }
         }
     }
+	public void setData(int row, int col, double value) {
+		if (row <0 || row >= rows || col < 0 || col >= cols) {
+			throw new IllegalArgumentException("Indices fuera de rango");
+	}
+		data[row][col]=value;
+	}
 	public void printMatrix() {
 		for (int i = 0; i < rows; i++) {
 			for(int j = 0; j < cols; j++) {
-				System.out.print(data[i][j]+"\t");
+				System.out.println(data[i][j]);
 			}
 			System.out.println();
 		}
