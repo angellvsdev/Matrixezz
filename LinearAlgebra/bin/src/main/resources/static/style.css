@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #414040;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#calculator {
+  background-color: #252525;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  color: #F2F2F2;
+}
+#calculator label {
+  display: block;
+  margin: 10px 0;
+  font-weight: bold;
+}
+#calculator input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  align-self: center;
+}
+#calculator .op-menu-title {
+  font-weight: bold;
+}
+#calculator .op-menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+#calculator .op-menu .op-menu-opt {
+  display: flex;
+  align-items: center;
+  background-color: #dfb26e;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 5px 5px;
+  cursor: pointer;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+}
+#calculator .op-menu .op-menu-opt i {
+  margin-right: 5px;
+}
+#calculator .op-menu .op-menu-opt:hover {
+  background-color: #ac7936;
+}
+#calculator #data-01 {
+  background-color: #272727;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+  color: #F2F2F2;
+}
+#calculator #data-02 {
+  background-color: #272727;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border: none;
+  color: #F2F2F2;
+}
+#calculator #result {
+  font-weight: bold;
+  color: #F2F2F2;
+  display: none;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 26px;
+  align-self: center;
+  background: #dfb26e;
+  border-radius: 10px;
+}
+
+.elements_transition_factor {
+  transition-property: background;
+  transition-delay: 0.5s;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}/*# sourceMappingURL=style.css.map */
