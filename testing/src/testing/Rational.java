@@ -91,6 +91,18 @@ class Rational {
         return denominator;
     }
     /**
+     * Calcula la inversa de esta fracción.
+     *
+     * @return La fracción inversa.
+     */
+    public Rational getInverse() {
+        if (numerator == 0) {
+            throw new ArithmeticException("No se puede calcular la inversa si el numerador es 0");
+        }
+
+        return new Rational(denominator, numerator);
+    }
+    /**
      * Simplifica la fracción actual.
      */
     public void simplify() {
