@@ -181,6 +181,51 @@ public class Matrix {
         
         return transposedMatrix;
     }
+    public Matrix add(Matrix otherMatrix) {
+        if (this.rows != otherMatrix.rows || this.cols != otherMatrix.cols) {
+            throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
+        }
+
+        Matrix result = this.copyMatrix();
+
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                Value add = result.getData(i, j).add(otherMatrix.getData(i, j));
+                result.setData(i, j, add);
+            }
+        }
+
+        return result;
+    }
+    public Matrix subtract(Matrix otherMatrix) {
+        if (this.rows!= otherMatrix.rows || this.cols!= otherMatrix.cols) {
+            throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
+        }
+        Matrix result = this.copyMatrix();
+        for (int i = 0; i < this.rows; i++) {
+        	for (int j = 0; j < this.cols; j++) {
+                Value subtract = result.getData(i, j).subtract(otherMatrix.getData(i, j));
+                result.setData(i, j, subtract);
+            }
+        }
+        return result;
+        }
+    public Matrix multiply(Matrix otherMatrix) {
+    	if (this.cols!= otherMatrix.rows) {
+            throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
+        }
+        Matrix result = new Matrix(this.rows, otherMatrix.cols);
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < otherMatrix.cols; j++) {
+                Value multiply = new Value(0);
+                for (int k = 0; k < this.cols; k++) {
+                    multiply = multiply.add(this.getData(i, k).multiply(otherMatrix.getData(k, j)));
+                }
+                result.setData(i, j, multiply);
+            }
+        }
+        return result;
+    }
 
     /**
      * Genera una matriz con dimensiones especificadas y la llena con números enteros aleatorios.
@@ -204,7 +249,7 @@ public class Matrix {
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
                 int randomValue = random.nextInt(maxValue - minValue + 1) + minValue;
-                randomMatrix.setData(row, col, new Value((int) randomValue));
+                randomMatrix.setData(row, col, new Value(randomValue));
             }
         }
 
@@ -322,12 +367,12 @@ public class Matrix {
      * @return Una nueva matriz que representa la matriz resultante después de aplicar la eliminación gaussiana.
      * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
      */
-    public Matrix gaussianElimination() {
+    public Matrix gaussianEliminationWihSteps() {
         Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
         int n = copyMatrix.getRows();
         int steps = 0; // Contador de pasos
 
-        for (int col = 0; col < n - 1; col++) {
+        for (int col = 0; col < n; col++) {
             System.out.println("Paso " + (steps + 1) + ":");
             copyMatrix.printMatrix();
 
@@ -338,7 +383,7 @@ public class Matrix {
             } else {
                 if (pivotRow != col) {
                     steps++;   
-                    System.out.println("Paso " + (steps + 1) + ":");                    System.out.println("Operación realizada: Fila " + (col + 1) + " <-> Fila " + (pivotRow + 1));
+                    System.out.println("Paso " + (steps + 1) + ":");                    System.out.println("Operación realizada: F" + (col + 1) + " <-> F" + (pivotRow + 1));
                     copyMatrix.swapRows(col, pivotRow);
                     copyMatrix.printMatrix(); // Imprime la matriz después de intercambiar filas
 
@@ -375,10 +420,10 @@ public class Matrix {
 
                 for (int row = col + 1; row < n; row++) {
                     Value factor = copyMatrix.getData(row, col);
-                    if (factor.isZero()) {
-                        System.out.println("Operación realizada: Fila " + (row + 1) + " - Fila " + (col + 1));
+                    if (factor.isZero()||factor.isOne()) {
+                        System.out.println("Operación realizada: F" + (row + 1) + " - F" + (col + 1));
                     } else {
-                        System.out.println("Operación realizada: Fila " + (row + 1) + " - " + factor + " * Fila " + (col + 1));
+                        System.out.println("Operación realizada: F" + (row + 1) + " - " + factor + " * F" + (col + 1));
                     }
 
                     for (int i = col; i < n + 1; i++) {
@@ -402,10 +447,185 @@ public class Matrix {
         return copyMatrix;
     }
 
+    /**
+     * Realiza la eliminación gaussiana en una copia de la matriz actual para resolver un sistema de ecuaciones lineales.
+     *
+     * @return Una nueva matriz que representa la matriz resultante después de aplicar la eliminación gaussiana.
+     * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
+     */
+    public Matrix gaussianElimination() {
+        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+        int n = copyMatrix.getRows();
+
+        for (int col = 0; col < n; col++) {
+            int pivotRow = findNonZeroPivot(copyMatrix, col);
+
+            if (pivotRow == -1) {
+                continue; // No se encontró un pivote válido en esta columna, se salta este paso.
+            } else {
+                if (pivotRow != col) {
+                    copyMatrix.swapRows(col, pivotRow);
+                }
+
+                Value pivotValue = copyMatrix.getData(col, col);
+
+                if (pivotValue.isZero()) {
+                    continue; // Se encontró un pivote igual a cero, se salta este paso.
+                }
+
+                Value pivotInverse = pivotValue.getInverse();
+
+                for (int i = col; i < n + 1; i++) {
+                    Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
+                    copyMatrix.setData(col, i, newValue);
+                }
+
+                for (int row = col + 1; row < n; row++) {
+                    Value factor = copyMatrix.getData(row, col);
+
+                    for (int i = col; i < n + 1; i++) {
+                        Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
+                        copyMatrix.setData(row, i, newValue);
+                    }
+                }
+            }
+        }
+
+        return copyMatrix;
+    }
+
+    /**
+     * Realiza la eliminación de Gauss-Jordan en una copia de la matriz actual para resolver un sistema de ecuaciones lineales
+     * y obtener la matriz en su forma escalonada reducida por filas.
+     *
+     * @return Una nueva matriz que representa la matriz resultante en su forma escalonada reducida por filas.
+     * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
+     */
+    public Matrix gaussJordanElimination() {
+        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+        int n = copyMatrix.getRows();
+
+        for (int col = 0; col < n; col++) {
+            int pivotRow = findNonZeroPivot(copyMatrix, col);
+
+            if (pivotRow == -1) {
+                continue; // No se encontró un pivote válido en esta columna, se salta este paso.
+            } else {
+                if (pivotRow != col) {
+                    copyMatrix.swapRows(col, pivotRow);
+                }
+
+                Value pivotValue = copyMatrix.getData(col, col);
+
+                if (pivotValue.isZero()) {
+                    continue; // Se encontró un pivote igual a cero, se salta este paso.
+                }
+
+                Value pivotInverse = pivotValue.getInverse();
+
+                for (int i = col; i < n + 1; i++) {
+                    Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
+                    copyMatrix.setData(col, i, newValue);
+                }
+
+                for (int row = 0; row < n; row++) {
+                    if (row != col) {
+                        Value factor = copyMatrix.getData(row, col);
+
+                        for (int i = col; i < n + 1; i++) {
+                            Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
+                            copyMatrix.setData(row, i, newValue);
+                        }
+                    }
+                }
+            }
+        }
+
+        return copyMatrix;
+    }      
 
 
-        
+    /**
+     * Realiza la eliminación de Gauss-Jordan en una copia de la matriz actual para resolver un sistema de ecuaciones lineales
+     * y obtener la matriz en su forma escalonada reducida por filas.
+     *
+     * @param matrix La matriz a la que se aplicará la eliminación de Gauss-Jordan.
+     * @return Una nueva matriz que representa la matriz resultante en su forma escalonada reducida por filas.
+     * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
+     */
+    public Matrix gaussJordanEliminationWithSteps() {
+        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+        int n = copyMatrix.getRows();
+        int steps = 0; // Contador de pasos
 
+        for (int col = 0; col < n; col++) {
+            int pivotRow = findNonZeroPivot(copyMatrix, col);
+
+            if (pivotRow == -1) {
+                System.out.println("Paso " + (steps + 1) + ":");
+                copyMatrix.printMatrix();
+                System.out.println("No se encontró un pivote válido en esta columna, se salta este paso.");
+            } else {
+                if (pivotRow != col) {
+                    System.out.println("Paso " + (steps + 1) + ":");
+                    copyMatrix.printMatrix();
+                    System.out.println("Operación realizada: F" + (col + 1) + " <-> F" + (pivotRow + 1));
+                    copyMatrix.swapRows(col, pivotRow);
+                    copyMatrix.printMatrix(); // Imprime la matriz después de intercambiar filas
+                    steps++;
+                }
+
+                Value pivotValue = copyMatrix.getData(col, col);
+
+                if (pivotValue.isZero()) {
+                    System.out.println("Paso " + (steps + 1) + ":");
+                    copyMatrix.printMatrix();
+                    System.out.println("Se encontró un pivote igual a cero, se salta este paso.");
+                } else {
+                    if (!pivotValue.isOne()) {
+                        Value pivotInverse = pivotValue.getInverse();
+                        System.out.println("Paso " + (steps + 1) + ":");
+                        copyMatrix.printMatrix();
+                        System.out.println("Operación realizada: F" + (col + 1) + " * " + pivotInverse);
+                        for (int i = col; i < n + 1; i++) {
+                            Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
+                            copyMatrix.setData(col, i, newValue);
+                        }
+                        copyMatrix.printMatrix(); // Imprime la matriz después de volver el pivote igual a 1
+                        steps++;
+                    }
+
+                    for (int row = 0; row < n; row++) {
+                        if (row != col) {
+                            Value factor = copyMatrix.getData(row, col);
+                            System.out.println("Paso " + (steps + 1) + ":");
+                            copyMatrix.printMatrix();
+                            System.out.println("Operación realizada: F" + (row + 1) + " - " + factor + "F" + (col + 1));
+                            for (int i = col; i < n + 1; i++) {
+                                Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
+                                copyMatrix.setData(row, i, newValue);
+                            }
+                            steps++;
+                        }
+                    }
+                }
+            }
+        }
+
+        System.out.println("Matriz final:");
+        copyMatrix.printMatrix();
+        System.out.println("Número total de pasos: " + steps);
+
+        return copyMatrix;
+    }
+
+    /**
+     * Encuentra el índice de la primera fila con un pivote no nulo en una columna específica.
+     *
+     * @param matrix La matriz en la que se busca el pivote.
+     * @param col    La columna en la que se busca el pivote.
+     * @return El índice de la fila con un pivote no nulo, o -1 si no se encuentra.
+     */
     private int findNonZeroPivot(Matrix matrix, int col) {
         int n = matrix.getRows();
         for (int row = col; row < n; row++) {
@@ -415,7 +635,6 @@ public class Matrix {
         }
         return -1; // Devuelve -1 si no se encuentra un pivote no nulo
     }
-
 
     /**
      * Intercambia dos columnas de la matriz.

@@ -141,6 +141,17 @@ public class Value {
     	}
 		return false;
     }
+    public boolean isOne(){
+    	double epsilon = 1e-10;
+        if (doubleValue!=null) {
+            // Verifica si el valor es cercano a uno con una pequeña tolerancia
+            return Math.abs(this.getDoubleValue() - 1.0) < epsilon;
+        } else if (rationalValue!= null) {
+            double Value = (double) testing.Value.fromRational(rationalValue);
+            return Math.abs(Value - 1.0) < epsilon;
+        }
+		return false;
+    }
     /**
      * Imprime el valor como fracción si es un valor Rational, o como Double si es un valor Double.
      */
@@ -179,20 +190,20 @@ public class Value {
      */
     public Value add(Value other) {
         try {
-            if (doubleValue != null && other.doubleValue != null) {
+            if (this.isDouble() && other.isDouble()) {
                 // Suma de dos valores Double
                 return new Value(doubleValue + other.doubleValue);
-            } else if (rationalValue != null && other.rationalValue != null) {
+            } else if (this.isRational() && other.isRational()) {
                 // Suma de dos valores Rational
                 return new Value(rationalValue.add(other.rationalValue));
-            } else if (doubleValue != null && other.rationalValue != null) {
+            } else if (this.isDouble() && other.isRational()) {
                 if (fractionable(this)) {
                     Rational rational = fromDouble(doubleValue);
                     return new Value(rational.add(other.rationalValue));
                 } else {
                     return new Value(doubleValue + fromRational(other.rationalValue));
                 }
-            } else if (rationalValue != null && other.doubleValue != null) {
+            } else if (this.isRational() && other.isDouble()) {
                 if (fractionable(other)) {
                     Rational rational = fromDouble(other.doubleValue);
                     return new Value(rationalValue.add(rational));
@@ -207,7 +218,7 @@ public class Value {
             // Manejar la excepción
             System.out.println("El valor está vacío");
         }
-		return other;
+		return new Value(0.0);
     }
     /**
      * Realiza la resta de dos instancias de Value y devuelve una nueva instancia de Value con el resultado.
