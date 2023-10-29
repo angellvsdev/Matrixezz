@@ -71,7 +71,7 @@ public class Matrix {
 		}
 	}
 	// Operations With MATRICES
-	public Matrix sum(Matrix otherMatrix) {
+	public Matrix add(Matrix otherMatrix) {
 		if (this.rows != otherMatrix.rows || this.cols != otherMatrix.cols) {
 			throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
 		}
