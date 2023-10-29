@@ -1,0 +1,14 @@
+@import "./vars.scss", "_menu-styles.scss";
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    background: $platinum;
+}
+
+#menu_pack {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 20vh;
+}
