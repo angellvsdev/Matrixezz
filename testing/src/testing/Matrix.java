@@ -181,50 +181,178 @@ public class Matrix {
         
         return transposedMatrix;
     }
+    /**
+     * Realiza la suma de dos matrices y devuelve una nueva matriz como resultado.
+     *
+     * @param otherMatrix La otra matriz a sumar.
+     * @return Una nueva matriz que representa la suma.
+     * @throws IllegalArgumentException Si las matrices no tienen las mismas dimensiones.
+     */
     public Matrix add(Matrix otherMatrix) {
+        // Verifica si las matrices tienen las mismas dimensiones.
         if (this.rows != otherMatrix.rows || this.cols != otherMatrix.cols) {
             throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
         }
 
+        // Crea una copia de la matriz actual para almacenar el resultado.
         Matrix result = this.copyMatrix();
 
+        // Realiza la suma elemento por elemento y actualiza la matriz de resultado.
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
-                Value add = result.getData(i, j).add(otherMatrix.getData(i, j));
-                result.setData(i, j, add);
+                // Realiza la suma de los elementos en la misma posición de ambas matrices.
+                Value sum = result.getData(i, j).add(otherMatrix.getData(i, j));
+                // Actualiza el valor en la matriz de resultado.
+                result.setData(i, j, sum);
             }
         }
 
         return result;
     }
+
+    /**
+     * Realiza la resta de dos matrices y devuelve una nueva matriz como resultado.
+     *
+     * @param otherMatrix La otra matriz a restar.
+     * @return Una nueva matriz que representa la resta.
+     * @throws IllegalArgumentException Si las matrices no tienen las mismas dimensiones.
+     */
     public Matrix subtract(Matrix otherMatrix) {
-        if (this.rows!= otherMatrix.rows || this.cols!= otherMatrix.cols) {
+        // Verifica si las matrices tienen las mismas dimensiones.
+        if (this.rows != otherMatrix.rows || this.cols != otherMatrix.cols) {
             throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
         }
+
+        // Crea una copia de la matriz actual para almacenar el resultado.
         Matrix result = this.copyMatrix();
+
+        // Realiza la resta elemento por elemento y actualiza la matriz de resultado.
         for (int i = 0; i < this.rows; i++) {
-        	for (int j = 0; j < this.cols; j++) {
-                Value subtract = result.getData(i, j).subtract(otherMatrix.getData(i, j));
-                result.setData(i, j, subtract);
+            for (int j = 0; j < this.cols; j++) {
+                // Realiza la resta de los elementos en la misma posición de ambas matrices.
+                Value difference = result.getData(i, j).subtract(otherMatrix.getData(i, j));
+                // Actualiza el valor en la matriz de resultado.
+                result.setData(i, j, difference);
             }
         }
+
         return result;
-        }
+    }
+
+    /**
+     * Realiza la multiplicación de dos matrices y devuelve una nueva matriz como resultado.
+     *
+     * @param otherMatrix La otra matriz a multiplicar.
+     * @return Una nueva matriz que representa la multiplicación.
+     * @throws IllegalArgumentException Si las matrices no tienen las mismas dimensiones.
+     */
     public Matrix multiply(Matrix otherMatrix) {
-    	if (this.cols!= otherMatrix.rows) {
+        // Verifica si el número de columnas de la matriz actual es igual al número de filas de la otra matriz.
+        if (this.cols != otherMatrix.rows) {
             throw new IllegalArgumentException("Las matrices no tienen las mismas dimensiones");
         }
+
+        // Crea una nueva matriz para almacenar el resultado de la multiplicación.
         Matrix result = new Matrix(this.rows, otherMatrix.cols);
+
+        // Realiza la multiplicación de matrices usando tres bucles anidados.
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < otherMatrix.cols; j++) {
-                Value multiply = new Value(0);
+                Value product = new Value(0);
+
+                // Calcula el producto escalar acumulativo de los elementos de las matrices.
                 for (int k = 0; k < this.cols; k++) {
-                    multiply = multiply.add(this.getData(i, k).multiply(otherMatrix.getData(k, j)));
+                    Value partialProduct = this.getData(i, k).multiply(otherMatrix.getData(k, j));
+                    product = product.add(partialProduct);
                 }
-                result.setData(i, j, multiply);
+
+                // Almacena el resultado en la matriz de resultado.
+                result.setData(i, j, product);
+            }
+        }
+
+        return result;
+    }
+    public Matrix muliplyScalar(double scalar) {
+    	// Crea una nueva matriz para almacenar el resultado de la multiplicación.
+        Matrix result = new Matrix(this.rows, this.cols);
+        // Realiza la multiplicación de matrices usando tres bucles anidados.
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.cols; j++) {
+                Value product = new Value(0);
+                // Calcula el producto escalar acumulativo de los elementos de las matrices.
+                	for (int k = 0; k < this.cols; k++) {
+                        Value partialProduct = this.getData(i, k).multiply(new Value(scalar));
+                        product = product.add(partialProduct);
+                    }
+                // Almacena el resultado en la matriz de resultado.	
             }
         }
         return result;
+    }
+    /**
+     * Realiza la suma de dos filas de la matriz y devuelve una nueva fila como resultado.
+     *
+     * @param rowIndex1 Índice de la primera fila.
+     * @param rowIndex2 Índice de la segunda fila.
+     * @return Una nueva fila que representa la suma de las filas.
+     */
+    public Value[] addRows(int rowIndex1, int rowIndex2) {
+        if (rowIndex1 < 0 || rowIndex1 >= rows || rowIndex2 < 0 || rowIndex2 >= rows) {
+            throw new IllegalArgumentException("Los índices de fila están fuera de rango");
+        }
+
+        Value[] resultRow = new Value[cols];
+
+        for (int j = 0; j < cols; j++) {
+            Value sum = getData(rowIndex1, j).add(getData(rowIndex2, j));
+            resultRow[j] = sum;
+        }
+
+        return resultRow;
+    }
+    /**
+     * Realiza la resta de dos filas de la matriz y devuelve una nueva fila como resultado.
+     *
+     * @param rowIndex1 Índice de la primera fila.
+     * @param rowIndex2 Índice de la segunda fila.
+     * @return Una nueva fila que representa la resta de las filas.
+     */
+    public Value[] subtractRows(int rowIndex1, int rowIndex2) {
+        if (rowIndex1 < 0 || rowIndex1 >= rows || rowIndex2 < 0 || rowIndex2 >= rows) {
+            throw new IllegalArgumentException("Los índices de fila están fuera de rango");
+        }
+
+        Value[] resultRow = new Value[cols];
+
+        for (int j = 0; j < cols; j++) {
+            Value difference = getData(rowIndex1, j).subtract(getData(rowIndex2, j));
+            resultRow[j] = difference;
+        }
+
+        return resultRow;
+    }
+
+    /**
+     * Realiza la multiplicación de una fila por un valor escalar y devuelve una nueva fila como resultado.
+     *
+     * @param rowIndex Índice de la fila a multiplicar.
+     * @param scalar Valor escalar por el que se multiplicará la fila.
+     * @return Una nueva fila que representa la fila multiplicada por el valor escalar.
+     */
+    public Value[] multiplyRow(int rowIndex, Value scalar) {
+        if (rowIndex < 0 || rowIndex >= rows) {
+            throw new IllegalArgumentException("El índice de fila está fuera de rango");
+        }
+
+        Value[] resultRow = new Value[cols];
+
+        for (int j = 0; j < cols; j++) {
+            Value product = getData(rowIndex, j).multiply(scalar);
+            resultRow[j] = product;
+        }
+
+        return resultRow;
     }
 
     /**
@@ -367,8 +495,8 @@ public class Matrix {
      * @return Una nueva matriz que representa la matriz resultante después de aplicar la eliminación gaussiana.
      * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
      */
-    public Matrix gaussianEliminationWihSteps() {
-        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+    public Matrix gaussianEliminationWithSteps() {
+        Matrix copyMatrix = copyMatrix(); // Crea una copia de la matriz original
         int n = copyMatrix.getRows();
         int steps = 0; // Contador de pasos
 
@@ -382,11 +510,11 @@ public class Matrix {
                 System.out.println("No se encontró un pivote válido en esta columna, se salta este paso.");
             } else {
                 if (pivotRow != col) {
-                    steps++;   
-                    System.out.println("Paso " + (steps + 1) + ":");                    System.out.println("Operación realizada: F" + (col + 1) + " <-> F" + (pivotRow + 1));
+                    steps++;
+                    System.out.println("Paso " + (steps + 1) + ":");
+                    System.out.println("Operación realizada: F" + (col + 1) + " <-> F" + (pivotRow + 1));
                     copyMatrix.swapRows(col, pivotRow);
                     copyMatrix.printMatrix(); // Imprime la matriz después de intercambiar filas
-
                 }
 
                 Value pivotValue = copyMatrix.getData(col, col);
@@ -411,29 +539,17 @@ public class Matrix {
                     }
                 }
 
-                // Transforma el pivote en 1 tomando su inversa
-                Value pivotInverse = pivotValue.getInverse();
-                for (int i = col; i < n + 1; i++) {
-                    Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
-                    copyMatrix.setData(col, i, newValue);
-                }
+                performPivotDivision(copyMatrix, col);
 
                 for (int row = col + 1; row < n; row++) {
                     Value factor = copyMatrix.getData(row, col);
-                    if (factor.isZero()||factor.isOne()) {
+                    if (factor.isZero() || factor.isOne()) {
                         System.out.println("Operación realizada: F" + (row + 1) + " - F" + (col + 1));
                     } else {
                         System.out.println("Operación realizada: F" + (row + 1) + " - " + factor + " * F" + (col + 1));
                     }
 
-                    for (int i = col; i < n + 1; i++) {
-                        // Redondea los valores cercanos a cero a cero
-                        if (factor.isZero()) {
-                            factor = new Value(0.0);
-                        }
-                        Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
-                        copyMatrix.setData(row, i, newValue);
-                    }
+                    performRowReduction(copyMatrix, col, row);
                 }
                 steps++;
             }
@@ -454,7 +570,10 @@ public class Matrix {
      * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
      */
     public Matrix gaussianElimination() {
-        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+        if (this.getCoefficients().calculateDeterminant().isZero()) {
+            throw new  ArithmeticException("La determinante es igual a cero, el sistema de ecuaciones lineales no se puede realizar.");
+        }
+        Matrix copyMatrix = copyMatrix();
         int n = copyMatrix.getRows();
 
         for (int col = 0; col < n; col++) {
@@ -467,26 +586,10 @@ public class Matrix {
                     copyMatrix.swapRows(col, pivotRow);
                 }
 
-                Value pivotValue = copyMatrix.getData(col, col);
-
-                if (pivotValue.isZero()) {
-                    continue; // Se encontró un pivote igual a cero, se salta este paso.
-                }
-
-                Value pivotInverse = pivotValue.getInverse();
-
-                for (int i = col; i < n + 1; i++) {
-                    Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
-                    copyMatrix.setData(col, i, newValue);
-                }
+                performPivotDivision(copyMatrix, col);
 
                 for (int row = col + 1; row < n; row++) {
-                    Value factor = copyMatrix.getData(row, col);
-
-                    for (int i = col; i < n + 1; i++) {
-                        Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
-                        copyMatrix.setData(row, i, newValue);
-                    }
+                    performRowReduction(copyMatrix, col, row);
                 }
             }
         }
@@ -501,8 +604,15 @@ public class Matrix {
      * @return Una nueva matriz que representa la matriz resultante en su forma escalonada reducida por filas.
      * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
      */
+    /**
+     * Realiza la eliminación de Gauss-Jordan en una copia de la matriz actual para resolver un sistema de ecuaciones lineales
+     * y obtener la matriz en su forma escalonada reducida por filas.
+     *
+     * @return Una nueva matriz que representa la matriz resultante en su forma escalonada reducida por filas.
+     * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
+     */
     public Matrix gaussJordanElimination() {
-        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+        Matrix copyMatrix = copyMatrix(); // Crea una copia de la matriz original
         int n = copyMatrix.getRows();
 
         for (int col = 0; col < n; col++) {
@@ -515,35 +625,18 @@ public class Matrix {
                     copyMatrix.swapRows(col, pivotRow);
                 }
 
-                Value pivotValue = copyMatrix.getData(col, col);
-
-                if (pivotValue.isZero()) {
-                    continue; // Se encontró un pivote igual a cero, se salta este paso.
-                }
-
-                Value pivotInverse = pivotValue.getInverse();
-
-                for (int i = col; i < n + 1; i++) {
-                    Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
-                    copyMatrix.setData(col, i, newValue);
-                }
+                performPivotDivision(copyMatrix, col);
 
                 for (int row = 0; row < n; row++) {
                     if (row != col) {
-                        Value factor = copyMatrix.getData(row, col);
-
-                        for (int i = col; i < n + 1; i++) {
-                            Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
-                            copyMatrix.setData(row, i, newValue);
-                        }
+                        performRowReduction(copyMatrix, col, row);
                     }
                 }
             }
         }
 
         return copyMatrix;
-    }      
-
+    }
 
     /**
      * Realiza la eliminación de Gauss-Jordan en una copia de la matriz actual para resolver un sistema de ecuaciones lineales
@@ -554,62 +647,12 @@ public class Matrix {
      * @throws ArithmeticException Si se intenta calcular la inversa de un número que es igual a 0.
      */
     public Matrix gaussJordanEliminationWithSteps() {
-        Matrix copyMatrix = this.copyMatrix(); // Crea una copia de la matriz original
+        Matrix copyMatrix = copyMatrix(); // Crea una copia de la matriz original
         int n = copyMatrix.getRows();
         int steps = 0; // Contador de pasos
 
         for (int col = 0; col < n; col++) {
-            int pivotRow = findNonZeroPivot(copyMatrix, col);
-
-            if (pivotRow == -1) {
-                System.out.println("Paso " + (steps + 1) + ":");
-                copyMatrix.printMatrix();
-                System.out.println("No se encontró un pivote válido en esta columna, se salta este paso.");
-            } else {
-                if (pivotRow != col) {
-                    System.out.println("Paso " + (steps + 1) + ":");
-                    copyMatrix.printMatrix();
-                    System.out.println("Operación realizada: F" + (col + 1) + " <-> F" + (pivotRow + 1));
-                    copyMatrix.swapRows(col, pivotRow);
-                    copyMatrix.printMatrix(); // Imprime la matriz después de intercambiar filas
-                    steps++;
-                }
-
-                Value pivotValue = copyMatrix.getData(col, col);
-
-                if (pivotValue.isZero()) {
-                    System.out.println("Paso " + (steps + 1) + ":");
-                    copyMatrix.printMatrix();
-                    System.out.println("Se encontró un pivote igual a cero, se salta este paso.");
-                } else {
-                    if (!pivotValue.isOne()) {
-                        Value pivotInverse = pivotValue.getInverse();
-                        System.out.println("Paso " + (steps + 1) + ":");
-                        copyMatrix.printMatrix();
-                        System.out.println("Operación realizada: F" + (col + 1) + " * " + pivotInverse);
-                        for (int i = col; i < n + 1; i++) {
-                            Value newValue = copyMatrix.getData(col, i).multiply(pivotInverse);
-                            copyMatrix.setData(col, i, newValue);
-                        }
-                        copyMatrix.printMatrix(); // Imprime la matriz después de volver el pivote igual a 1
-                        steps++;
-                    }
-
-                    for (int row = 0; row < n; row++) {
-                        if (row != col) {
-                            Value factor = copyMatrix.getData(row, col);
-                            System.out.println("Paso " + (steps + 1) + ":");
-                            copyMatrix.printMatrix();
-                            System.out.println("Operación realizada: F" + (row + 1) + " - " + factor + "F" + (col + 1));
-                            for (int i = col; i < n + 1; i++) {
-                                Value newValue = copyMatrix.getData(row, i).subtract(factor.multiply(copyMatrix.getData(col, i)));
-                                copyMatrix.setData(row, i, newValue);
-                            }
-                            steps++;
-                        }
-                    }
-                }
-            }
+            steps = performColumnStep(copyMatrix, col, steps);
         }
 
         System.out.println("Matriz final:");
@@ -619,6 +662,63 @@ public class Matrix {
         return copyMatrix;
     }
 
+    private void performRowReduction(Matrix matrix, int col, int row) {
+	    Value factor = matrix.getData(row, col);
+	    int n = matrix.getRows();
+	
+	    for (int i = col; i < n + 1; i++) {
+	        Value newValue = matrix.getData(row, i).subtract(factor.multiply(matrix.getData(col, i)));
+	        matrix.setData(row, i, newValue);
+	    }
+	}
+
+	private void performPivotDivision(Matrix matrix, int col) {
+	    Value pivotValue = matrix.getData(col, col);
+	
+	    if (!pivotValue.isZero()) {
+	        Value pivotInverse = pivotValue.getInverse();
+	        int n = matrix.getRows();
+	
+	        for (int i = col; i < n + 1; i++) {
+	            Value newValue = matrix.getData(col, i).multiply(pivotInverse);
+	            matrix.setData(col, i, newValue);
+	        }
+	    }
+	}
+
+	private int performColumnStep(Matrix matrix, int col, int steps) {
+        int pivotRow = findNonZeroPivot(matrix, col);
+
+        if (pivotRow == -1) {
+            printStep(matrix, steps);
+            System.out.println("No se encontró un pivote válido en esta columna, se salta este paso.");
+        } else {
+            if (pivotRow != col) {
+                printStep(matrix, steps);
+                System.out.println("Operación realizada: F" + (col + 1) + " <-> F" + (pivotRow + 1));
+                matrix.swapRows(col, pivotRow);
+                matrix.printMatrix();
+                steps++;
+            }
+
+            performPivotDivision(matrix, col);
+
+            for (int row = 0; row < matrix.getRows(); row++) {
+                if (row != col) {
+                    performRowReduction(matrix, col, row);
+                    printStep(matrix, steps);
+                    System.out.println("Operación realizada: F" + (row + 1) + " - " + matrix.getData(row, col) + "F" + (col + 1));
+                    steps++;
+                }
+            }
+        }
+        return steps;
+    }
+
+    private void printStep(Matrix matrix, int step) {
+        System.out.println("Paso " + (step + 1) + ":");
+        matrix.printMatrix();
+    }
     /**
      * Encuentra el índice de la primera fila con un pivote no nulo en una columna específica.
      *
@@ -663,7 +763,7 @@ public class Matrix {
      * @param row1 El índice de la primera fila a intercambiar.
      * @param row2 El índice de la segunda fila a intercambiar.
      */
-    public void swapRows(int row1, int row2) {
+    private void swapRows(int row1, int row2) {
         if (row1 < 0 || row1 >= rows || row2 < 0 || row2 >= rows) {
             throw new IllegalArgumentException("Índices de fila fuera de rango");
         }
