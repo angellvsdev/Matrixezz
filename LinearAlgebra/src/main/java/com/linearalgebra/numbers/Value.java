@@ -1,8 +1,7 @@
-package testing;
+package com.linearalgebra.numbers;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
-
 
 public class Value {
     private Double doubleValue;
