@@ -10,10 +10,63 @@
 <body>
     <section id="menu_pack">
         <ul class="menu">
-            <li class="menu__opt" data-operation="add"></li>
+            <li class="menu__opt">
+              <button class="menu__opt-button" type="button" data-operation="add">
+                <p class="button__txt"></p>
+                <i class="fa-regular fa-square-plus"></i>
+              </button>
+            </li>
+            <li class="menu__opt">
+              <button class="menu__opt-button" type="button" data-operation="substract">
+                <p class="button__txt"></p>
+                <i class="fa-solid fa-minus"></i>
+              </button>
+            </li>
+            <li class="menu__opt">
+              <button class="menu__opt-button" type="button" data-operation="multiply">
+                <p class="button__txt"></p>
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </li>
+            <li class="menu__opt">
+              <ul class="menu__opt-compounds">
+                <li class="compounds__op">
+                  <button class="compounds__op-button" type="button" data-operation="gauss">
+                    <p class="button__txt"></p> 
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button" type="button" data-operation="gauss-jordan">
+                    <p class="button__txt"></p>  
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button" type="button 
+                  " data-operation="determinants">
+                    <p class="button__txt"></p> 
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button" type="button" data-operation="cofactors">
+                    <p class="button__txt"></p> 
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button" type="button" data-operation="unit">
+                    <p class="button__txt"></p> 
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button" type="button" data-operation="staggered">
+                    <p class="button__txt"></p> 
+                  </button>
+                </li>
+              </ul>
+            </li>
         </ul>
     </section>
     <section id="matrix_pack"></section>
     <section id="log_and_results_pack"></section>
+    <script src="https://kit.fontawesome.com/4925cf4946.js" crossorigin="anonymous"></script>
 </body>
 </html>
