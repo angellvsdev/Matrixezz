@@ -20,11 +20,12 @@ $gradient-top-left: linear-gradient(225deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ce
 $gradient-bottom-left: linear-gradient(315deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
 $gradient-radial: radial-gradient(#f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
 
+$borders-shape: 10px;
+
 // Componentes UI >>
 @mixin elements-shaping {
-    background: $platinum;
     box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
-    border-radius: 14px;
+    border-radius: $borders-shape;
 }
 
 @mixin button-styleship {

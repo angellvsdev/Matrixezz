@@ -1,38 +1,63 @@
 .menu {
-  height: 5rem;
-  width: 25rem;
+  width: 30rem;
   list-style-type: none;
-  background: rgb(222, 226, 230);
-  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
-  border-radius: 14px;
   display: inline-flex;
   justify-content: space-around;
-  padding-left: 0;
+  padding: 5px;
 }
 
 .menu__opt {
   flex-grow: 1;
   display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  width: 2rem;
+  height: 6rem;
 }
 .menu__opt-button {
-  width: 90%;
-  height: 90%;
-  justify-content: space-around;
-  align-self: center;
+  width: 100%;
+  height: 100%;
   border: none;
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+  font-size: 0.8rem;
+  -webkit-clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+          clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
 }
 .menu__opt-compounds {
   list-style-type: none;
   padding: 0;
-  height: 90%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform: translateY(100%);
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
 }
-.menu__opt:last-child {
-  transform: translateY(5%);
+.menu__opt-compounds .compounds__op-button {
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+  border: none;
 }
 
 .compounds__op-button {
   width: 100%;
-  height: 90%;
+  height: 100%;
+}
+
+#compounds-methods {
+  position: relative;
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+  font-size: 0.8rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 body {
