@@ -1,5 +1,9 @@
 @import "./vars.scss", "_menu-styles.scss";
 
+html:root {
+    font-size: 12px;
+}
+
 body {
     display: flex;
     flex-flow: column nowrap;

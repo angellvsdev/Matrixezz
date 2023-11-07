@@ -13,6 +13,9 @@
   justify-content: center;
   width: 2rem;
   height: 6rem;
+  transform: skewX(-10deg);
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  margin-right: 5px;
 }
 .menu__opt-button {
   width: 100%;
@@ -21,9 +24,12 @@
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
-  font-size: 0.8rem;
-  -webkit-clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
-          clip-path: polygon(15% 0, 100% 0, 85% 100%, 0 100%);
+  font-size: 1rem;
+  font-family: "Rokkitt", serif;
+  transform: skewX(0deg);
+}
+.menu__opt-button .button__txt, .menu__opt-button > i {
+  transform: skewX(10deg);
 }
 .menu__opt-compounds {
   list-style-type: none;
@@ -35,6 +41,7 @@
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
+  display: none;
 }
 .menu__opt-compounds .compounds__op-button {
   background: rgb(33, 37, 41);
@@ -46,6 +53,10 @@
 .compounds__op-button {
   width: 100%;
   height: 100%;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+}
+.compounds__op-button .button__txt, .compounds__op-button > i {
+  transform: skewX(10deg);
 }
 
 #compounds-methods {
@@ -53,11 +64,20 @@
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-family: "Rokkitt", serif;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  transform: skewX(-10deg);
+}
+#compounds-methods .button__txt, #compounds-methods > i {
+  transform: skewX(10deg);
+}
+
+html:root {
+  font-size: 12px;
 }
 
 body {

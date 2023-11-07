@@ -1,3 +1,9 @@
+// Tipografías >>
+$sub-title-font: 'Fanwood Text', serif;
+$content-font: 'Frank Ruhl Libre', serif;
+$title-font: 'Rokkitt', serif;
+
+
 // Paleta de colores principal >>
 $seasalt: rgba(248, 249, 250, 1);
 $antiflash-white: rgba(233, 236, 239, 1);
@@ -21,10 +27,12 @@ $gradient-bottom-left: linear-gradient(315deg, #f8f9faff, #e9ecefff, #dee2e6ff, 
 $gradient-radial: radial-gradient(#f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
 
 $borders-shape: 10px;
+$elements-shadows: 10px 10px 15px rgba(3, 3, 3, 0.644);
+
 
 // Componentes UI >>
 @mixin elements-shaping {
-    box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+    box-shadow: $elements-shadows;
     border-radius: $borders-shape;
 }
 
