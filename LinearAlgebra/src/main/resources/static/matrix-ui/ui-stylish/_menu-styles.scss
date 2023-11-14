@@ -1,77 +1,75 @@
 .menu {
-    width: 30rem;
-    list-style-type: none;
-    display: inline-flex;
-    justify-content: space-around;
-    padding: 5px;
-}
+      display: inline-flex;
+      justify-content: space-around;
+      list-style-type: none;
+      padding: 5px;
+      width: 30rem;
+  }
 
 .menu__opt {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    width: 2rem;
-    height: 6rem;
-    transform: skewX(-10deg);
-    box-shadow: $elements-shadows;
-    margin-right: 5px;
+      box-shadow: $elements-shadows;
+      display: flex;
+      flex-direction: row-reverse;
+      flex-grow: 1;
+      height: 6rem;
+      justify-content: center;
+      margin-right: 5px;
+      transform: skewX(-10deg);
+      width: 2rem;
 
     &-button {
-        width: 100%;
-        height: 100%;
-        border: none;
-        @include button-styleship;
-        font-size: 1rem;
-        font-family: $title-font;
-        transform: skewX(0deg);
-        
+          border: none;
+          font-family: $title-font;
+          font-size: 1rem;
+          height: 100%;
+          transform: skewX(0deg);
+          width: 100%;
 
+        @include button-styleship;
         .button__txt, & > i {
-            transform: skewX(10deg);
-        }
-    }
-
+              transform: skewX(10deg);
+          }
+      }
     &-compounds {
-        list-style-type: none;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        transform: translateY(100%);
-        @include button-styleship;
-        display: none;
+          display: none;
+          height: 100%;
+          list-style-type: none;
+          padding: 0;
+          position: absolute;
+          transform: translateY(100%);
+          width: 100%;
 
+        @include button-styleship;
         .compounds__op-button {
+              border: none;
+
             @include button-styleship;
-            border: none;
-        }
-    }
-    
-}
+          }
+      }
+  }
 
 .compounds__op-button {
-    width: 100%;
-    height: 100%;
-    box-shadow: $elements-shadows;
+      box-shadow: $elements-shadows;
+      height: 100%;
+      width: 100%;
 
     .button__txt, & > i {
-        transform: skewX(10deg);
-    }
-}
+          transform: skewX(10deg);
+      }
+  }
 
 #compounds-methods {
-    position: relative;
-    @include button-styleship;
-    font-size: 1rem;
-    font-family: $title-font;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    transform: skewX(-10deg);
+      align-items: center;
+      display: inline-flex;
+      flex-direction: column;
+      font-family: $title-font;
+      font-size: 1rem;
+      justify-content: center;
+      position: relative;
+      transform: skewX(-10deg);
 
+    @include button-styleship;
     .button__txt, & > i {
-        transform: skewX(10deg);
-    }
-}
+          transform: skewX(10deg);
+      }
+  }

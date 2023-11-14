@@ -1,76 +1,76 @@
 .menu {
-  width: 30rem;
-  list-style-type: none;
   display: inline-flex;
   justify-content: space-around;
+  list-style-type: none;
   padding: 5px;
+  width: 30rem;
 }
 
 .menu__opt {
-  flex-grow: 1;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
-  width: 2rem;
+  flex-grow: 1;
   height: 6rem;
-  transform: skewX(-10deg);
-  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  justify-content: center;
   margin-right: 5px;
+  transform: skewX(-10deg);
+  width: 2rem;
 }
 .menu__opt-button {
-  width: 100%;
-  height: 100%;
   border: none;
+  font-family: "Rokkitt", serif;
+  font-size: 1rem;
+  height: 100%;
+  transform: skewX(0deg);
+  width: 100%;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
-  font-size: 1rem;
-  font-family: "Rokkitt", serif;
-  transform: skewX(0deg);
 }
 .menu__opt-button .button__txt, .menu__opt-button > i {
   transform: skewX(10deg);
 }
 .menu__opt-compounds {
+  display: none;
+  height: 100%;
   list-style-type: none;
   padding: 0;
-  height: 100%;
-  width: 100%;
   position: absolute;
   transform: translateY(100%);
+  width: 100%;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
-  display: none;
 }
 .menu__opt-compounds .compounds__op-button {
+  border: none;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
-  border: none;
 }
 
 .compounds__op-button {
-  width: 100%;
-  height: 100%;
   box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  height: 100%;
+  width: 100%;
 }
 .compounds__op-button .button__txt, .compounds__op-button > i {
   transform: skewX(10deg);
 }
 
 #compounds-methods {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  font-family: "Rokkitt", serif;
+  font-size: 1rem;
+  justify-content: center;
   position: relative;
+  transform: skewX(-10deg);
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
-  font-size: 1rem;
-  font-family: "Rokkitt", serif;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  transform: skewX(-10deg);
 }
 #compounds-methods .button__txt, #compounds-methods > i {
   transform: skewX(10deg);
