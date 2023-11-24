@@ -1,9 +1,9 @@
-package com.linearalgebra.responsers;
+package com.linearalgebra.response;
 
 import java.util.Arrays;
 
-import com.linearalgebra.matrix.Matrix;
-import com.linearalgebra.numbers.Value;
+import com.linearalgebra.entity.Matrix;
+import com.linearalgebra.entity.Value;
 
 public class MatrixResponse {
     private int rows;
@@ -13,7 +13,7 @@ public class MatrixResponse {
     public MatrixResponse(Matrix matrix) {
         this.rows = matrix.getRows();
         this.cols = matrix.getCols();
-        this.data = matrix.getArrayData();
+        this.data = matrix.getData();
     }
 
     public int getRows() {
