@@ -39,6 +39,7 @@
   position: absolute;
   transform: translateY(100%);
   width: 100%;
+  z-index: 100;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
@@ -68,12 +69,184 @@
   justify-content: center;
   position: relative;
   transform: skewX(-10deg);
+  z-index: 100;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
 }
 #compounds-methods .button__txt, #compounds-methods > i {
   transform: skewX(10deg);
+}
+
+#matrix_pack {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 45vh;
+}
+
+.ui_logo {
+  height: 8rem;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  text-shadow: 4px 4px 1px rgb(52, 58, 64);
+  border-radius: 50%;
+  background: rgb(248, 249, 250);
+  margin: 20px 0;
+  box-shadow: 4px 4px 1px rgb(52, 58, 64);
+}
+.ui_logo__logo {
+  font-size: 5rem;
+  font-family: "Rokkitt", serif;
+  color: rgb(108, 117, 125);
+}
+
+.matrixez {
+  display: flex;
+  align-self: center;
+  height: 80%;
+}
+
+#matrix-01, #matrix-02 {
+  width: 45vw;
+  position: relative;
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
+  margin: 0 10px;
+  font-family: "Rokkitt", serif;
+}
+#matrix-01 #m-A, #matrix-01 #m-B, #matrix-02 #m-A, #matrix-02 #m-B {
+  margin-right: 5px;
+  font-size: 2rem;
+  color: rgb(248, 249, 250);
+  text-shadow: 4px 4px 1px rgb(108, 117, 125);
+}
+
+.credits {
+  align-self: center;
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 1.25rem;
+}
+
+.matrix_form {
+  display: grid;
+  width: 12rem;
+  height: 12rem;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, auto);
+  gap: 5px;
+  transform: skewX(-10deg);
+}
+.matrix_form__value {
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  border: none;
+  width: 6rem;
+  height: 6rem;
+  font-size: 2rem;
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+a {
+  color: rgb(108, 117, 125);
+}
+
+.dimensions {
+  position: absolute;
+  top: -30%;
+  transform: skewX(-10deg);
+  font-family: "Frank Ruhl Libre", serif;
+}
+.dimensions .rows_size, .dimensions .columns_size {
+  width: 3.25rem;
+  height: 2.5rem;
+  background: rgb(108, 117, 125);
+  color: rgb(248, 249, 250);
+  font-size: 1.25rem;
+  text-align: center;
+  border-radius: 2.5px;
+}
+.dimensions .rows_size option, .dimensions .columns_size option {
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  border-radius: 2.5px;
+}
+.dimensions .set_dim {
+  background: rgb(52, 58, 64);
+  color: rgb(248, 249, 250);
+  width: 3.25rem;
+  height: 2.5rem;
+  border: none;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+}
+
+#log_and_results_pack {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  height: 35vh;
+  width: 100vw;
+}
+
+.log {
+  list-style-type: none;
+  background: rgb(73, 80, 87);
+  color: rgb(222, 226, 230);
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  height: 30%;
+  width: 90%;
+  font-size: 1.25rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  font-family: "Rokkitt", serif;
+}
+
+#shot-operations {
+  height: 30%;
+  width: 50%;
+  border: none;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  background: rgb(52, 58, 64);
+  color: rgb(222, 226, 230);
+  font-size: 1.25rem;
+  font-family: "Rokkitt", serif;
+  transform: skewX(-10deg);
+}
+#shot-operations .opers_txt {
+  transform: skewX(10deg);
+}
+
+.on_load_screen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  text-shadow: 4px 4px 1px rgb(222, 226, 230);
+  background: rgb(52, 58, 64);
+  display: none;
+}
+.on_load_screen .ui_logo__logo {
+  font-size: 7.5rem;
+  font-family: "Rokkitt", serif;
+  color: rgb(248, 249, 250);
 }
 
 html:root {
