@@ -3,7 +3,7 @@
       justify-content: space-around;
       list-style-type: none;
       padding: 5px;
-      width: 30rem;
+      width: 38rem;
   }
 
 .menu__opt {
@@ -20,7 +20,7 @@
     &-button {
           border: none;
           font-family: $title-font;
-          font-size: 1rem;
+          font-size: 1.25rem;
           height: 100%;
           transform: skewX(0deg);
           width: 100%;
@@ -31,12 +31,15 @@
           }
       }
     &-compounds {
-          display: none;
           height: 100%;
           list-style-type: none;
           padding: 0;
           position: absolute;
           transform: translateY(100%);
+          transform-origin: top;
+          transition-property: transform;
+          transition-duration: 0.3s;
+          transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
           width: 100%;
           z-index: 100;
 
@@ -64,7 +67,7 @@
       display: inline-flex;
       flex-direction: column;
       font-family: $title-font;
-      font-size: 1rem;
+      font-size: 1.25rem;
       justify-content: center;
       position: relative;
       transform: skewX(-10deg);

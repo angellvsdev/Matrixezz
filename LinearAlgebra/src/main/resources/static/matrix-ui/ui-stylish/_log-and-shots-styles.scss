@@ -50,6 +50,7 @@
     text-shadow: 4px 4px 1px $platinum;
     background: $onyx;
     display: none;
+    z-index: 1000;
 
     .ui_logo__logo {
         font-size: 7.5rem;
