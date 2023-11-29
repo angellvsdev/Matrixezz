@@ -1,50 +1,49 @@
 // Transiciones en Hover >>
-.fast-scale-down { // Escala: 0 a 1
-    transform-origin: 100% 0%;
-    transition-property: transform;
-    transition-duration: 1s;
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
-}
-
-.background-color-change {
-    transition-property: background-color;
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
-}
-
-.inner-content-change {
-    transition-property: color;
-    transition-duration: 0.3s;
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
-}
-
-// Animaciones Activas >>
-
-
-// Animaciones Pasivas >>
-.wobble-hor-top {
-	animation: wobble-hor-top 1.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) 2s infinite alternate-reverse both;
-}
-
-@keyframes wobble-hor-top {
-    0%,
-    100% {
-      transform: translateX(0%);
-      transform-origin: 50% 50%;
-    }
-    15% {
-      transform: translateX(-30px) rotate(6deg);
-    }
-    30% {
-      transform: translateX(15px) rotate(-6deg);
-    }
-    45% {
-      transform: translateX(-15px) rotate(3.6deg);
-    }
-    60% {
-      transform: translateX(9px) rotate(-2.4deg);
-    }
-    75% {
-      transform: translateX(-6px) rotate(1.2deg);
+.menu-opening {
+  &:hover {
+    .menu__opt-compounds {
+      display: block;
+      opacity: 1;
     }
   }
+}
+
+@mixin hoverChangeColouring($newBackgroundColor, $newContentColor) {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  cursor: pointer;
+
+  &:hover {
+    background: $newBackgroundColor;
+    color: $newContentColor;
+    border: 1.5px dashed $newContentColor;
+  }
+}
+
+
+.option-colors-change {
+  @include hoverChangeColouring($seasalt, $eerie-black);   
+}
+
+#shot-operations, .log {
+  @include hoverChangeColouring($eerie-black, $seasalt);
+}
+
+// Animaciones >>
+@keyframes floating {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(15%);
+    }
+}
+
+.on_floating {
+  animation-name: floating;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

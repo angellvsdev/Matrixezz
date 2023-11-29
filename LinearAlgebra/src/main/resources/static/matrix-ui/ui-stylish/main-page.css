@@ -43,6 +43,8 @@
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   width: 100%;
   z-index: 100;
+  opacity: 0;
+  display: none;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
@@ -72,7 +74,7 @@
   justify-content: center;
   position: relative;
   transform: skewX(-10deg);
-  z-index: 100;
+  z-index: 200;
   background: rgb(33, 37, 41);
   color: rgb(248, 249, 250);
   text-align: center;
@@ -251,6 +253,51 @@ a {
   font-size: 7.5rem;
   font-family: "Rokkitt", serif;
   color: rgb(248, 249, 250);
+}
+
+.menu-opening:hover .menu__opt-compounds {
+  display: block;
+  opacity: 1;
+}
+
+.option-colors-change {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.option-colors-change:hover {
+  background: rgb(248, 249, 250);
+  color: rgb(33, 37, 41);
+  border: 1.5px dashed rgb(33, 37, 41);
+}
+
+#shot-operations, .log {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+#shot-operations:hover, .log:hover {
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  border: 1.5px dashed rgb(248, 249, 250);
+}
+
+@keyframes floating {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(15%);
+  }
+}
+.on_floating {
+  animation-name: floating;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 html:root {

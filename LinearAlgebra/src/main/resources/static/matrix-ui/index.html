@@ -16,54 +16,50 @@
     <section id="menu_pack">
         <ul class="menu">
             <li class="menu__opt">
-              <button class="menu__opt-button" type="button" data-operation="add">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="add">
                 <p class="button__txt">Suma</p>
                 <i class="fa-regular fa-square-plus"></i>
               </button>
             </li>
             <li class="menu__opt">
-              <button class="menu__opt-button" type="button" data-operation="substract">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="substract">
                 <p class="button__txt">Resta</p>
                 <i class="fa-solid fa-minus"></i>
               </button>
             </li>
             <li class="menu__opt">
-              <button class="menu__opt-button" type="button" data-operation="multiply">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="multiply">
                 <p class="button__txt">Multiplicación</p>
                 <i class="fa-solid fa-xmark"></i>
               </button>
             </li>
-            <li class="menu__opt" id="compounds-methods">
-              <p class="button__txt">Compuestos</p>
-              <i class="fa-solid fa-calculator"></i>
+            <li class="menu__opt menu-opening" id="compounds-methods">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="multiply">
+                <p class="button__txt">Compuestos</p>
+                <i class="fa-solid fa-calculator"></i>
+              </button>
               <ul class="menu__opt-compounds">
                 <li class="compounds__op">
-                  <button class="compounds__op-button" type="button" data-operation="gauss">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gauss">
                     <p class="button__txt">Gauss</p> 
                     <i class="fa-solid fa-table-cells-large"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button" type="button" data-operation="gauss-jordan">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gauss-jordan">
                     <p class="button__txt">G. Jordan</p>
                     <i class="fa-solid fa-table-cells-large"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button" type="button 
+                  <button class="compounds__op-button option-colors-change" type="button 
                   " data-operation="determinants">
                     <p class="button__txt">Determinante</p>
                     <i class="fa-regular fa-square-full"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button" type="button" data-operation="cofactors">
-                    <p class="button__txt">Cofactores</p>
-                    <i class="fa-solid fa-cubes"></i>
-                  </button>
-                </li>
-                <li class="compounds__op">
-                  <button class="compounds__op-button" type="button" data-operation="unit">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="unit">
                     <p class="button__txt">M. Unidad</p>
                     <i class="fa-solid fa-1"></i>
                   </button>
@@ -73,7 +69,7 @@
         </ul>
     </section>
     <section id="matrix_pack">
-      <div class="ui_logo">
+      <div class="ui_logo on_floating">
         <p class="ui_logo__logo">M.</p>
       </div>
       <div class="matrixez">
@@ -94,7 +90,7 @@
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button class="set_dim" id="set_A"><i class="fa-solid fa-rotate-right"></i></button>
+            <button class="set_dim option-colors-change" id="set_A"><i class="fa-solid fa-rotate-right"></i></button>
           </div>
           <span id="m-A">A=</span>
           <form class="matrix_form" action="submit">
@@ -118,7 +114,7 @@
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
-            <button class="set_dim" id="set_B"><i class="fa-solid fa-rotate-right"></i></button>
+            <button class="set_dim option-colors-change" id="set_B"><i class="fa-solid fa-rotate-right"></i></button>
           </div>
           <span id="m-B">B=</span>
           <form class="matrix_form" action="submit">
