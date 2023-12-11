@@ -30,6 +30,10 @@
   @include hoverChangeColouring($eerie-black, $seasalt);
 }
 
+.rows_size, .columns_size, .matrix_form__value {
+  @include hoverChangeColouring($antiflash-white, $eerie-black)
+}
+
 // Animaciones >>
 @keyframes floating {
     from {

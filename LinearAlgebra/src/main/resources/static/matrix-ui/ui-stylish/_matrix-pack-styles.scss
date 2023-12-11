@@ -44,14 +44,15 @@
     #m-A, #m-B {
         margin-right: 5px;
         font-size: 2rem;
-        color: $seasalt;
-        text-shadow: 4px 4px 1px $slate-gray;
+        color: $eerie-black;
+        text-shadow: 2px 2px 1px $seasalt;
 
     }
 }
 
 .credits {
     align-self: center;
+    transform: translateY(2rem);
     font-family: $content-font;
     font-size: 1.25rem;
 }
@@ -107,6 +108,7 @@ a {
         width: 3.25rem;
         height: 2.5rem;
         border: none;
+        padding: 0;
         @include elements-shaping;
     }
 }

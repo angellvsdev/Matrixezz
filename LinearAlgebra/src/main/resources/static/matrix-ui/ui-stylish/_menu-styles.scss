@@ -80,3 +80,10 @@
           transform: skewX(10deg);
       }
   }
+
+.compounds_sub-option {
+  transform: translateX(-100%) translateY(-100%);
+  position: absolute;
+  display: block;
+  height: 6rem;
+}

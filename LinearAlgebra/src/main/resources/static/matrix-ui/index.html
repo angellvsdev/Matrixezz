@@ -40,15 +40,39 @@
               </button>
               <ul class="menu__opt-compounds">
                 <li class="compounds__op">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="multiplyScalar">
+                    <p class="button__txt">M. Escalar</p> 
+                    <i class="fa-solid fa-xmark"></i>
+                  </button>
+                </li>
+                <li class="compounds__op">
                   <button class="compounds__op-button option-colors-change" type="button" data-operation="gauss">
                     <p class="button__txt">Gauss</p> 
                     <i class="fa-solid fa-table-cells-large"></i>
+                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussianEliminationWithSteps">
+                      <p class="button__txt">+ Pasos</p> 
+                      <i class="fa-solid fa-table-cells-large"></i>
+                    </button>
                   </button>
                 </li>
                 <li class="compounds__op">
                   <button class="compounds__op-button option-colors-change" type="button" data-operation="gauss-jordan">
                     <p class="button__txt">G. Jordan</p>
                     <i class="fa-solid fa-table-cells-large"></i>
+                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussJordanEliminationWithSteps">
+                      <p class="button__txt">+ Pasos</p> 
+                      <i class="fa-solid fa-table-cells-large"></i>
+                    </button>
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="inverseMatrix">
+                    <p class="button__txt">M. Inversa</p> 
+                    <i class="fa-solid fa-table-cells-large"></i>
+                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="inverseMatrixWithSteps">
+                      <p class="button__txt">+ Pasos</p> 
+                      <i class="fa-solid fa-table-cells-large"></i>
+                    </button>
                   </button>
                 </li>
                 <li class="compounds__op">
@@ -56,6 +80,12 @@
                   " data-operation="determinants">
                     <p class="button__txt">Determinante</p>
                     <i class="fa-regular fa-square-full"></i>
+                  </button>
+                </li>
+                <li class="compounds__op">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="transpose">
+                    <p class="button__txt">Traspuesta</p> 
+                    <i class="fa-solid fa-arrows-spin"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
@@ -93,8 +123,8 @@
             <button class="set_dim option-colors-change" id="set_A"><i class="fa-solid fa-rotate-right"></i></button>
           </div>
           <span id="m-A">A=</span>
-          <form class="matrix_form" action="submit">
-            <input class="matrix_form__value" type="number" name="A11" id="A11" placeholder="N">
+          <form class="matrix_form" action="submit" id="A">
+             <input class="matrix_form__value" type="number" name="A11" id="A11" placeholder="N">
           </form>
         </div>
         <div id="matrix-02">
@@ -117,14 +147,14 @@
             <button class="set_dim option-colors-change" id="set_B"><i class="fa-solid fa-rotate-right"></i></button>
           </div>
           <span id="m-B">B=</span>
-          <form class="matrix_form" action="submit">
-            <input class="matrix_form__value"type="number" name="B11" id="B11" placeholder="N">
+          <form class="matrix_form" action="submit" id="B">
+            <input class="matrix_form__value" type="number" name="B11" id="11" placeholder="N">
           </form>
         </div>
       </div>
       <div class="credits">
-        <p class="credits__txt">A cool <i class="fa-brands fa-github"></i> 
-          <span style="font-weight: 800;">GitHub</span> project by <a href="https://github.com/angellvsdev" class="creators-href">Angel</a> & <a href="https://github.com/Brizhel" class="creators-href">Reny</a>. ❤️
+        <p class="credits__txt">Un proyecto cool de <i class="fa-brands fa-github"></i> 
+          <span style="font-weight: 800;">GitHub</span> por <a href="https://github.com/angellvsdev" class="creators-href">Angel</a> & <a href="https://github.com/Brizhel" class="creators-href">Reny</a>. ❤️
         </p>
       </<div>
     </section>
@@ -147,5 +177,6 @@
       <p class="ui_logo__logo">M.</p>
     </div>
     <script src="https://kit.fontawesome.com/4925cf4946.js" crossorigin="anonymous"></script>
+    <script src="./ui-consumption/components_build.js"></script>
 </body>
 </html>
