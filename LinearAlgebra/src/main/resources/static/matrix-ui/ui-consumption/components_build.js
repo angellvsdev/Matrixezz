@@ -17,8 +17,7 @@ const buildMatrixTemplateComponent = (matrixSign) => {
         let insertionElement = document.createElement("input")
 
         insertionElement.setAttribute("class", "matrix_form__value")
-        insertionElement.setAttribute("type", "number")
-        insertionElement.setAttribute("placeholder", "N")
+        insertionElement.setAttribute("type", "text")
 
         insertionElement.style.width = `calc(12rem / ${columns})`
         insertionElement.style.height = `calc(12rem / ${rows})`
@@ -30,7 +29,9 @@ const buildMatrixTemplateComponent = (matrixSign) => {
     let indexRow = 1, indexColumn = 1
 
     cellsInsertionTemplate.childNodes.forEach(node => {
-        node.id = `${indexRow}${indexColumn}`
+        node.dataset.row = `${indexRow}`
+        node.dataset.column = `${indexColumn}`
+        node.setAttribute("placeholder", `${matrixSign}${indexRow}${indexColumn}`)
         node.setAttribute("name", `${matrixSign}${indexRow}${indexColumn}`)
 
         indexColumn++
@@ -52,6 +53,15 @@ document.addEventListener("click", e => {
     if (e.target.matches("#set_B, #set_B > i")) {
         buildMatrixTemplateComponent("B")
     }
-})
 
-// La clase SetOperationType establece el parametro necesario para guiar el método por el que se operan una o más matrices.
+    if (e.target.matches(".menu__opt-button, .compounds__op-button")) {
+        let resolveTrigger = document.getElementById("shot-operations"),
+            menuOptionNodes = document.querySelectorAll(".menu__opt-button, .compounds__op-button, .menu__opt_compounds_action")
+
+        menuOptionNodes.forEach(node => node.classList.remove("on-selection"))
+        e.target.classList.add("on-selection")
+        
+        resolveTrigger.dataset.protocol = `${e.target.dataset.operation}`
+        resolveTrigger.classList.add("on-selection")
+    }
+})

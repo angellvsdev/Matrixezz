@@ -1,3 +1,4 @@
+
 let responseMatrix, responseMatrixWithInstructive
 
 // La clase ProcessMatrixes se encarga de procesar operaciones simples que incluyan solo dos matrices.
@@ -10,32 +11,20 @@ class ProcessMatrixes {
         this.rows_B = rows_B
         this.cols_B = cols_B
         this.endpoint = endpoint
-        this.output_A = []
-        this.output_B = []
+        this.output_A
+        this.output_B
+    }
+
+    setMatrixes(matrix, rows, cols) {
+        for(i = 0; i < rows; i++) {
+            matrix.push(new Array(cols))
+        }
+
+        console.log(matrix)
     }
 
     sendMatrix() {
-        let template_matrix_vector = [] // Se almacenan los valores de la fila.
 
-        for(i = 0; i < this.rows_A;i++) {
-            for(j = 0; j < this.cols_A;j++) {
-                template_matrix_vector.push(this.matrix_A[j]) // Por cada iteración, y mientras que se evalua la fila en concreto, se agregan valores del output this.matrix_A.
-            }
-
-            this.output_A.push(template_matrix_vector) // Al array del output, se le agrega un nuevo array que representa a la fila con esos valores.
-
-            template_matrix_vector = [] // Se vacía el arreglo para repetir el proceso para la siguiente fila.
-        }
-
-        for(i = 0; i < this.rows_B;i++) {
-            for(j = 0; j < this.cols_B;j++) {
-                template_matrix_vector.push(this.matrix_B[j])
-            }
-
-            this.output_B.push(template_matrix_vector)
-
-            template_matrix_vector = []
-        }
 
         fetch(`http://localhost/matrix/${this.endpoint}`, {
             method: "POST",
@@ -107,3 +96,96 @@ class MatrixUIBuild {
         })
     }
 }
+
+class Matrix {
+    constructor(rows, cols, data) {
+        this.rows = rows;
+        this.cols = cols;
+        this.data = data;
+    }
+
+    // Getter para el número de filas
+    getRows() {
+        return this.rows;
+    }
+
+    // Getter para el número de columnas
+    getCols() {
+        return this.cols;
+    }
+
+    // Getter para los datos de la matriz
+    getData() {
+        return this.data;
+    }
+
+    // Método para obtener el valor en una posición específica
+    getCellValue(row, col) {
+        return this.data[row][col];
+    }
+    static fromJSON(json) {
+        const { rows, cols, data } = json;
+
+        // Asegurarse de que se proporcionen las propiedades necesarias
+        if (!rows || !cols || !data) {
+            throw new Error('El objeto JSON debe contener propiedades "rows", "cols" y "data".');
+        }
+
+        // Validar que data es una matriz de las dimensiones correctas
+        if (!Array.isArray(data) || data.length !== rows || !data.every(row => Array.isArray(row) && row.length === cols)) {
+            throw new Error('La propiedad "data" debe ser una matriz de las dimensiones correctas.');
+        }
+
+        return new Matrix(rows, cols, data);
+    }
+    // Método para convertir la instancia de Matrix a un objeto JSON
+    toJSON() {
+        const json = {
+            rows: this.rows,
+            cols: this.cols,
+            data: this.data.map(row =>
+                row.map(cell => {
+                    if (typeof cell === 'object' && cell !== null && 'value' in cell) {
+                      // Si ya es un objeto con una propiedad "value"
+                      return cell;
+                    } else {
+                      // Si es un valor simple, envuélvelo en un objeto
+                      return {
+                        "value": cell
+                      };
+                    }
+                  })
+                )
+              };
+        return json;
+    }
+}
+
+
+const matrixInstance = new Matrix(3, 4, [
+    ["1/2", "3/4", "5/6", "1"],
+    ["2/3", "4/5", "6/7", "2"],
+    ["3/4", "5/6", "7/8", "3"]
+  ]);
+  
+const jsonOutput = matrixInstance.toJSON();
+  
+console.log(jsonOutput)
+console.log(JSON.stringify(jsonOutput, null, 0));
+
+function setMatrixes(entranceID, matrix, rows, cols) {
+    let entranceContent = document.getElementById(`${entranceID}`)
+    let entranceValues = entranceContent.children
+
+    for(i = 0; i < rows; i++) {
+        matrix.push(new Array(cols))
+    }
+
+    for (let childNode of entranceValues) {
+        matrix[childNode.dataset.row - 1][childNode.dataset.column -1 ] = childNode.value
+    }
+
+    return matrix
+}
+
+console.log(setMatrixes("A", [], 3, 4));

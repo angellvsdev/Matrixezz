@@ -34,7 +34,7 @@
               </button>
             </li>
             <li class="menu__opt menu-opening" id="compounds-methods">
-              <button class="menu__opt-button option-colors-change" type="button" data-operation="multiply">
+              <button class="menu__opt__compounds_action option-colors-change" type="button" data-operation="multiply">
                 <p class="button__txt">Compuestos</p>
                 <i class="fa-solid fa-calculator"></i>
               </button>
@@ -46,7 +46,7 @@
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gauss">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gaussianElimination">
                     <p class="button__txt">Gauss</p> 
                     <i class="fa-solid fa-table-cells-large"></i>
                     <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussianEliminationWithSteps">
@@ -56,7 +56,7 @@
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gauss-jordan">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gaussJordanElimination">
                     <p class="button__txt">G. Jordan</p>
                     <i class="fa-solid fa-table-cells-large"></i>
                     <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussJordanEliminationWithSteps">
@@ -124,7 +124,7 @@
           </div>
           <span id="m-A">A=</span>
           <form class="matrix_form" action="submit" id="A">
-             <input class="matrix_form__value" type="number" name="A11" id="A11" placeholder="N">
+             <input class="matrix_form__value" type="number" name="A11" data-row="1" data-column="1" placeholder="A11">
           </form>
         </div>
         <div id="matrix-02">
@@ -148,7 +148,7 @@
           </div>
           <span id="m-B">B=</span>
           <form class="matrix_form" action="submit" id="B">
-            <input class="matrix_form__value" type="number" name="B11" id="11" placeholder="N">
+            <input class="matrix_form__value" type="number" name="B11" data-row="1" data-column="1" placeholder="B11">
           </form>
         </div>
       </div>

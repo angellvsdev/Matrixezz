@@ -17,7 +17,7 @@
       transform: skewX(-10deg);
       width: 2rem;
 
-    &-button {
+    &-button, &__compounds_action {
           border: none;
           font-family: $title-font;
           font-size: 1.25rem;
@@ -25,7 +25,8 @@
           transform: skewX(0deg);
           width: 100%;
 
-        @include button-styleship;
+          @include button-styleship;
+
         .button__txt, & > i {
               transform: skewX(10deg);
           }
@@ -86,4 +87,10 @@
   position: absolute;
   display: block;
   height: 6rem;
+}
+
+
+.on-selection {
+  background: $antiflash-white;
+  color: $eerie-black;
 }
