@@ -1,0 +1,60 @@
+#log_and_results_pack {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    height: 35vh;
+    width: 100vw;
+}
+
+.log {
+    list-style-type: none;
+    background: $outer-space;
+    color: $platinum;
+    @include elements-shaping;
+    height: 30%;
+    width: 90%;
+    font-size: 1.25rem;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    font-family: $title-font;
+}
+
+#shot-operations {
+    height: 30%;
+    width: 50%;
+    border: none;
+    @include elements-shaping;
+    background: $onyx;
+    color: $platinum;
+    font-size: 1.25rem;
+    font-family: $title-font;
+    transform: skewX(-10deg);
+
+    .opers_txt {
+        transform: skewX(10deg);
+    }
+}
+
+.on_load_screen {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    text-shadow: 4px 4px 1px $platinum;
+    background: $onyx;
+    display: none;
+    z-index: 1000;
+
+    .ui_logo__logo {
+        font-size: 7.5rem;
+        font-family: $title-font;
+        color: $seasalt;
+    }
+}

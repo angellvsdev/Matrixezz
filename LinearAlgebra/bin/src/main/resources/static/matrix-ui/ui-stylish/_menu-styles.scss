@@ -1,0 +1,96 @@
+.menu {
+      display: inline-flex;
+      justify-content: space-around;
+      list-style-type: none;
+      padding: 5px;
+      width: 38rem;
+  }
+
+.menu__opt {
+      box-shadow: $elements-shadows;
+      display: flex;
+      flex-direction: row-reverse;
+      flex-grow: 1;
+      height: 6rem;
+      justify-content: center;
+      margin-right: 5px;
+      transform: skewX(-10deg);
+      width: 2rem;
+
+    &-button, &__compounds_action {
+          border: none;
+          font-family: $title-font;
+          font-size: 1.25rem;
+          height: 100%;
+          transform: skewX(0deg);
+          width: 100%;
+
+          @include button-styleship;
+
+        .button__txt, & > i {
+              transform: skewX(10deg);
+          }
+      }
+    &-compounds {
+          height: 100%;
+          list-style-type: none;
+          padding: 0;
+          position: absolute;
+          transform: translateY(100%);
+          transform-origin: top;
+          transition-property: transform;
+          transition-duration: 0.3s;
+          transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+          width: 100%;
+          z-index: 100;
+          opacity: 0;
+          display: none;
+
+        @include button-styleship;
+        .compounds__op-button {
+              border: none;
+
+            @include button-styleship;
+          }
+      }
+  }
+
+.compounds__op-button {
+      box-shadow: $elements-shadows;
+      height: 100%;
+      width: 100%;
+
+    .button__txt, & > i {
+          transform: skewX(10deg);
+      }
+  }
+
+#compounds-methods {
+      align-items: center;
+      display: inline-flex;
+      flex-direction: column;
+      font-family: $title-font;
+      font-size: 1.25rem;
+      justify-content: center;
+      position: relative;
+      transform: skewX(-10deg);
+      z-index: 200;
+
+    @include button-styleship;
+    .button__txt, & > i {
+          transform: skewX(10deg);
+      }
+  }
+
+.compounds_sub-option {
+  transform: translateX(-100%) translateY(-100%);
+  position: absolute;
+  display: block;
+  height: 6rem;
+}
+
+
+.on-selection {
+  background: $antiflash-white;
+  color: $eerie-black;
+}

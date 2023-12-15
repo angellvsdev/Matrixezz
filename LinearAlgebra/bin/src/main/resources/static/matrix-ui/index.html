@@ -16,79 +16,80 @@
     <section id="menu_pack">
         <ul class="menu">
             <li class="menu__opt">
-              <button class="menu__opt-button option-colors-change" type="button" data-operation="add" data-operation_type="binary">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="add">
                 <p class="button__txt">Suma</p>
                 <i class="fa-regular fa-square-plus"></i>
               </button>
             </li>
             <li class="menu__opt">
-              <button class="menu__opt-button option-colors-change" type="button" data-operation="substract" data-operation_type="binary">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="substract">
                 <p class="button__txt">Resta</p>
                 <i class="fa-solid fa-minus"></i>
               </button>
             </li>
             <li class="menu__opt">
-              <button class="menu__opt-button option-colors-change" type="button" data-operation="multiply" data-operation_type="binary">
+              <button class="menu__opt-button option-colors-change" type="button" data-operation="multiply">
                 <p class="button__txt">Multiplicación</p>
                 <i class="fa-solid fa-xmark"></i>
               </button>
             </li>
             <li class="menu__opt menu-opening" id="compounds-methods">
-              <button class="menu__opt__compounds_action option-colors-change" type="button" data-operation="multiply" data-operation_type="binary">
+              <button class="menu__opt__compounds_action option-colors-change" type="button" data-operation="multiply">
                 <p class="button__txt">Compuestos</p>
                 <i class="fa-solid fa-calculator"></i>
               </button>
               <ul class="menu__opt-compounds">
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="multiplyScalar" data-operation_type="binary">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="multiplyScalar">
                     <p class="button__txt">M. Escalar</p> 
                     <i class="fa-solid fa-xmark"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gaussianElimination" data-operation_type="unary">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gaussianElimination">
                     <p class="button__txt">Gauss</p> 
                     <i class="fa-solid fa-table-cells-large"></i>
-                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussianEliminationWithSteps" data-operation_type="unary" data-operation_steps="true">
+                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussianEliminationWithSteps">
                       <p class="button__txt">+ Pasos</p> 
                       <i class="fa-solid fa-table-cells-large"></i>
                     </button>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gaussJordanElimination" data-operation_type="unary">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="gaussJordanElimination">
                     <p class="button__txt">G. Jordan</p>
                     <i class="fa-solid fa-table-cells-large"></i>
-                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussJordanEliminationWithSteps" data-operation_type="unary" data-operation_steps="true">
+                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="gaussJordanEliminationWithSteps">
                       <p class="button__txt">+ Pasos</p> 
                       <i class="fa-solid fa-table-cells-large"></i>
                     </button>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="inverseMatrix" data-operation_type="unary">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="inverseMatrix">
                     <p class="button__txt">M. Inversa</p> 
                     <i class="fa-solid fa-table-cells-large"></i>
-                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="inverseMatrixWithSteps" data-operation_type="unary" data-operation_steps="true">
+                    <button class="compounds__op-button option-colors-change compounds_sub-option" type="button" data-operation="inverseMatrixWithSteps">
                       <p class="button__txt">+ Pasos</p> 
                       <i class="fa-solid fa-table-cells-large"></i>
                     </button>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button " data-operation="determinants" data-operation_type="unary">
+                  <button class="compounds__op-button option-colors-change" type="button 
+                  " data-operation="determinants">
                     <p class="button__txt">Determinante</p>
                     <i class="fa-regular fa-square-full"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="transpose" data-operation_type="unary">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="transpose">
                     <p class="button__txt">Traspuesta</p> 
                     <i class="fa-solid fa-arrows-spin"></i>
                   </button>
                 </li>
                 <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="unit" data-operation_type="unary">
+                  <button class="compounds__op-button option-colors-change" type="button" data-operation="unit">
                     <p class="button__txt">M. Unidad</p>
                     <i class="fa-solid fa-1"></i>
                   </button>
@@ -163,7 +164,7 @@
           <p class="empty_status-text"><i class="fa-solid fa-ban"></i> Sin operaciones en juego.</p>
         </li>
       </ul>
-      <button id="shot-operations" type="submit">
+      <button id="shot-operations">
         <p class="opers_txt"><i class="fa-solid fa-check"></i> Resolver</p>
       </button>
     </section>
@@ -171,8 +172,7 @@
       <p class="ui_logo__logo">M.</p>
     </div>
     <script src="https://kit.fontawesome.com/4925cf4946.js" crossorigin="anonymous"></script>
-    <script src="./ui-consumption/operation_triggers.js" type="module"></script>
-    <script src="./ui-consumption/components_build.js" type="module"></script>
-    <script src="./ui-consumption/consumption.js" type="module"></script>
+    <script src="./ui-consumption/components_build.js"></script>
+    <script src="./ui-consumption/consumption.js"></script>
 </body>
 </html>

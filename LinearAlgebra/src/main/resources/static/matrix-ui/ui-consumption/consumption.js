@@ -1,102 +1,8 @@
-
-let responseMatrix, responseMatrixWithInstructive
-
-// La clase ProcessMatrixes se encarga de procesar operaciones simples que incluyan solo dos matrices.
-class ProcessMatrixes {
-    constructor(matrix_A, matrix_B, rows_A, cols_A, rows_B, cols_B, endpoint) {
-        this.matrix_A = matrix_A
-        this.matrix_B = matrix_B
-        this.rows_A = rows_A
-        this.cols_A = cols_A
-        this.rows_B = rows_B
-        this.cols_B = cols_B
-        this.endpoint = endpoint
-        this.output_A
-        this.output_B
-    }
-
-    setMatrixes(matrix, rows, cols) {
-        for(i = 0; i < rows; i++) {
-            matrix.push(new Array(cols))
-        }
-
-        console.log(matrix)
-    }
-
-    sendMatrix() {
+import { buildMatrixDataComponentWith } from "./components_build.js";
 
 
-        fetch(`http://localhost/matrix/${this.endpoint}`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                matrix: {
-                    "rows": this.rows_A,
-                    "cols": this.cols_A,
-                    "data": this.output_A
-                },
-                matrix: {
-                    "rows": this.rows_B,
-                    "cols": this.cols_B,
-                    "data": this.output_B
-                }
-            })
-        }).then(response => response.json())
-        .then(responseContent => {
-            buildMatrixDataComponent(responseContent)
-        })
-    }
-}
 
-// La clase MatrixUIBuild se encarga de realizar operaciones que involucran a una sola matriz.
-class MatrixUIBuild {
-    constructor(matrix, rows, cols, endpoint) {
-        this.matrix = matrix
-        this.rows = rows
-        this.cols = cols
-        this.endpoint = endpoint
-        this.output = []
-    }
-
-    sendMatrix() {
-        let template_matrix_vector = []
-
-        for(i = 0; i < this.rows;i++) {
-            for(j = 0; j < this.cols;j++) {
-                template_matrix_vector.push(this.matrix[j])
-            }
-
-            this.output.push(template_matrix_vector)
-
-            template_matrix_vector = []
-        }
-
-        fetch(`http://localhost/matrix/${this.endpoint}`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                matrix: {
-                    "rows": this.rows,
-                    "cols": this.cols,
-                    "data": this.output
-                },
-                matrix: {
-                    "rows": this.rows,
-                    "cols": this.cols,
-                    "data": this.output
-                }
-            })
-        }).then(response => response.json())
-        .then(responseContent => {
-            buildMatrixDataComponent(responseContent)
-        })
-    }
-}
-
+// La clase Matrix se encarga de generar una matriz bidimensional a partir de filas y columnas y una matriz de datos dada, la instancia de esta es lo que se envía para el API.
 class Matrix {
     constructor(rows, cols, data) {
         this.rows = rows;
@@ -162,30 +68,110 @@ class Matrix {
 }
 
 
-const matrixInstance = new Matrix(3, 4, [
-    ["1/2", "3/4", "5/6", "1"],
-    ["2/3", "4/5", "6/7", "2"],
-    ["3/4", "5/6", "7/8", "3"]
-  ]);
-  
-const jsonOutput = matrixInstance.toJSON();
-  
-console.log(jsonOutput)
-console.log(JSON.stringify(jsonOutput, null, 0));
 
-function setMatrixes(entranceID, matrix, rows, cols) {
-    let entranceContent = document.getElementById(`${entranceID}`)
-    let entranceValues = entranceContent.children
+// La clase setMatrixes toma la ID de un formulario HTML con el fin de transformar sus valores a un arreglo entendible para el API.
+function setMatrixes(entranceID) {
+    const field = []
 
-    for(i = 0; i < rows; i++) {
-        matrix.push(new Array(cols))
+    let entranceContent = document.getElementById(`${entranceID}`),
+        entranceValues = entranceContent.children,
+        x_rows = entranceContent.dataset.total_rows,
+        y_columns = entranceContent.dataset.total_columns
+
+    for(let i = 0; i < x_rows; i++) {
+        field.push(new Array(y_columns))
     }
 
     for (let childNode of entranceValues) {
-        matrix[childNode.dataset.row - 1][childNode.dataset.column -1 ] = childNode.value
+        field[childNode.dataset.row - 1][childNode.dataset.column -1 ] = childNode.value
     }
 
-    return matrix
+    return field
 }
 
-console.log(setMatrixes("A", [], 3, 4));
+
+
+// La clase ProcessMatrixes se encarga de procesar operaciones simples que incluyan solo dos matrices.
+export class MatrixProcessBy {
+    constructor(endpoint) {
+        this.matrix_A = document.getElementById("A")
+        this.matrix_B = document.getElementById("B")
+        this.rows_A = this.matrix_A.dataset.total_rows
+        this.cols_A = this.matrix_A.dataset.total_columns
+        this.rows_B = this.matrix_B.dataset.total_rows
+        this.cols_B = this.matrix_B.dataset.total_columns
+        this.endpoint = endpoint
+    }
+   
+    solveMatrixesThrough() {
+        const resolveTrigger = document.getElementById('shot-operations'),
+              protocolType = resolveTrigger.dataset.protocol_type,
+              protocolHasSteps = resolveTrigger.dataset.protocol_has_steps
+
+        const UIMatrixInstanceA = new Matrix(parseInt(this.rows_A), parseInt(this.cols_A), setMatrixes("A")),
+              UIMatrixInstanceB = new Matrix(parseInt(this.rows_B), parseInt(this.cols_B), setMatrixes("B"))
+
+        const matrix1 = UIMatrixInstanceA.toJSON(),
+              matrix2 = UIMatrixInstanceB.toJSON()
+
+            fetch(`http://localhost/matrix/${this.endpoint}`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    matrix1,
+                    matrix2,
+                })
+            })
+            .then(response => response.json())
+            .then(responseContent => {
+                return buildMatrixDataComponentWith(responseContent)
+            })
+            .catch(error => {})
+        
+
+        if (protocolType === "unary") {
+            if (protocolHasSteps) {
+                // Maqueta los pasos
+            }
+
+            fetch(`http://localhost/matrix/${this.endpoint}`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    matrix1
+                })
+            })
+            .then(response => response.json())
+            .then(responseContent => {
+                console.log(responseContent)
+            })
+            .catch(error => console.log(error.status))
+        }
+    }
+}
+
+// const matrixInstanceA = new Matrix(2, 2, [["1", "4"],["9", "6"]]),
+//       matrixInstanceB = new Matrix(2, 2, [["9", "19"],["1", "4"]])
+                
+// const matrix1 = matrixInstanceA.toJSON();
+// const matrix2 = matrixInstanceB.toJSON();
+
+// fetch("http://localhost/matrix/multiply", {
+//         method: "POST",
+//     	headers: {
+//     		'Content-Type': 'application/json'
+//     	},
+//     	body: JSON.stringify({
+//     		matrix1,
+//     		matrix2
+//     	})
+// 	})
+// 	.then(response => response.json())
+//     .then(responseContent => {
+//     	console.log(responseContent)
+//     })
+//     .catch(error => console.log(error.status))

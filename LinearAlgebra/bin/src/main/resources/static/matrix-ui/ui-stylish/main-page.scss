@@ -1,0 +1,18 @@
+@import "./vars.scss", "./_menu-styles.scss", "./_matrix-pack-styles.scss", "./_log-and-shots-styles.scss", "./_anims-and-transitions.scss";
+
+html:root {
+    font-size: 12px;
+}
+
+body {
+    display: flex;
+    flex-flow: column nowrap;
+    background: $platinum;
+}
+
+#menu_pack {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 20vh;
+}

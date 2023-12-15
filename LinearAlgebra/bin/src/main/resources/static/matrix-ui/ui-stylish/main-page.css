@@ -1,0 +1,344 @@
+.menu {
+  display: inline-flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding: 5px;
+  width: 38rem;
+}
+
+.menu__opt {
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  display: flex;
+  flex-direction: row-reverse;
+  flex-grow: 1;
+  height: 6rem;
+  justify-content: center;
+  margin-right: 5px;
+  transform: skewX(-10deg);
+  width: 2rem;
+}
+.menu__opt-button, .menu__opt__compounds_action {
+  border: none;
+  font-family: "Rokkitt", serif;
+  font-size: 1.25rem;
+  height: 100%;
+  transform: skewX(0deg);
+  width: 100%;
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+}
+.menu__opt-button .button__txt, .menu__opt-button > i, .menu__opt__compounds_action .button__txt, .menu__opt__compounds_action > i {
+  transform: skewX(10deg);
+}
+.menu__opt-compounds {
+  height: 100%;
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  transform: translateY(100%);
+  transform-origin: top;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  width: 100%;
+  z-index: 100;
+  opacity: 0;
+  display: none;
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+}
+.menu__opt-compounds .compounds__op-button {
+  border: none;
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+}
+
+.compounds__op-button {
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  height: 100%;
+  width: 100%;
+}
+.compounds__op-button .button__txt, .compounds__op-button > i {
+  transform: skewX(10deg);
+}
+
+#compounds-methods {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  font-family: "Rokkitt", serif;
+  font-size: 1.25rem;
+  justify-content: center;
+  position: relative;
+  transform: skewX(-10deg);
+  z-index: 200;
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+}
+#compounds-methods .button__txt, #compounds-methods > i {
+  transform: skewX(10deg);
+}
+
+.compounds_sub-option {
+  transform: translateX(-100%) translateY(-100%);
+  position: absolute;
+  display: block;
+  height: 6rem;
+}
+
+.on-selection {
+  background: rgb(233, 236, 239);
+  color: rgb(33, 37, 41);
+}
+
+#matrix_pack {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 45vh;
+}
+
+.ui_logo {
+  height: 8rem;
+  width: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  text-shadow: 4px 4px 1px rgb(52, 58, 64);
+  border-radius: 50%;
+  background: rgb(248, 249, 250);
+  margin: 20px 0;
+  box-shadow: 4px 4px 1px rgb(52, 58, 64);
+}
+.ui_logo__logo {
+  font-size: 5rem;
+  font-family: "Rokkitt", serif;
+  color: rgb(108, 117, 125);
+}
+
+.matrixez {
+  display: flex;
+  align-self: center;
+  height: 80%;
+}
+
+#matrix-01, #matrix-02 {
+  width: 45vw;
+  position: relative;
+  display: inline-flex;
+  align-self: center;
+  justify-content: center;
+  margin: 0 10px;
+  font-family: "Rokkitt", serif;
+}
+#matrix-01 #m-A, #matrix-01 #m-B, #matrix-02 #m-A, #matrix-02 #m-B {
+  margin-right: 5px;
+  font-size: 2rem;
+  color: rgb(33, 37, 41);
+  text-shadow: 2px 2px 1px rgb(248, 249, 250);
+}
+
+.credits {
+  align-self: center;
+  transform: translateY(2rem);
+  font-family: "Frank Ruhl Libre", serif;
+  font-size: 1.25rem;
+}
+
+.matrix_form {
+  display: grid;
+  width: 12rem;
+  height: 12rem;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: repeat(2, auto);
+  gap: 5px;
+  transform: skewX(-10deg);
+}
+.matrix_form__value {
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  text-align: center;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  border: none;
+  width: 6rem;
+  height: 6rem;
+  font-size: 2rem;
+  font-family: "Frank Ruhl Libre", serif;
+}
+
+a {
+  color: rgb(108, 117, 125);
+}
+
+.dimensions {
+  position: absolute;
+  top: -30%;
+  transform: skewX(-10deg);
+  font-family: "Frank Ruhl Libre", serif;
+}
+.dimensions .rows_size, .dimensions .columns_size {
+  width: 3.25rem;
+  height: 2.5rem;
+  background: rgb(108, 117, 125);
+  color: rgb(248, 249, 250);
+  font-size: 1.25rem;
+  text-align: center;
+  border-radius: 2.5px;
+}
+.dimensions .rows_size option, .dimensions .columns_size option {
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  border-radius: 2.5px;
+}
+.dimensions .set_dim {
+  background: rgb(52, 58, 64);
+  color: rgb(248, 249, 250);
+  width: 3.25rem;
+  height: 2.5rem;
+  border: none;
+  padding: 0;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+}
+
+#log_and_results_pack {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  height: 35vh;
+  width: 100vw;
+}
+
+.log {
+  list-style-type: none;
+  background: rgb(73, 80, 87);
+  color: rgb(222, 226, 230);
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  height: 30%;
+  width: 90%;
+  font-size: 1.25rem;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  font-family: "Rokkitt", serif;
+}
+
+#shot-operations {
+  height: 30%;
+  width: 50%;
+  border: none;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  background: rgb(52, 58, 64);
+  color: rgb(222, 226, 230);
+  font-size: 1.25rem;
+  font-family: "Rokkitt", serif;
+  transform: skewX(-10deg);
+}
+#shot-operations .opers_txt {
+  transform: skewX(10deg);
+}
+
+.on_load_screen {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+  text-shadow: 4px 4px 1px rgb(222, 226, 230);
+  background: rgb(52, 58, 64);
+  display: none;
+  z-index: 1000;
+}
+.on_load_screen .ui_logo__logo {
+  font-size: 7.5rem;
+  font-family: "Rokkitt", serif;
+  color: rgb(248, 249, 250);
+}
+
+.menu-opening:hover .menu__opt-compounds {
+  display: block;
+  opacity: 1;
+}
+
+.option-colors-change {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.option-colors-change:hover {
+  background: rgb(248, 249, 250);
+  color: rgb(33, 37, 41);
+  border: 1.5px dashed rgb(33, 37, 41);
+}
+
+#shot-operations, .log {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+#shot-operations:hover, .log:hover {
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  border: 1.5px dashed rgb(248, 249, 250);
+}
+
+.rows_size, .columns_size, .matrix_form__value {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.rows_size:hover, .columns_size:hover, .matrix_form__value:hover {
+  background: rgb(233, 236, 239);
+  color: rgb(33, 37, 41);
+  border: 1.5px dashed rgb(33, 37, 41);
+}
+
+@keyframes floating {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(15%);
+  }
+}
+.on_floating {
+  animation-name: floating;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+html:root {
+  font-size: 12px;
+}
+
+body {
+  display: flex;
+  flex-flow: column nowrap;
+  background: rgb(222, 226, 230);
+}
+
+#menu_pack {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 20vh;
+}/*# sourceMappingURL=main-page.css.map */

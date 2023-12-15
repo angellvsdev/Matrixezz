@@ -1,0 +1,53 @@
+// Transiciones en Hover >>
+.menu-opening {
+  &:hover {
+    .menu__opt-compounds {
+      display: block;
+      opacity: 1;
+    }
+  }
+}
+
+@mixin hoverChangeColouring($newBackgroundColor, $newContentColor) {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+  cursor: pointer;
+
+  &:hover {
+    background: $newBackgroundColor;
+    color: $newContentColor;
+    border: 1.5px dashed $newContentColor;
+  }
+}
+
+
+.option-colors-change {
+  @include hoverChangeColouring($seasalt, $eerie-black);   
+}
+
+#shot-operations, .log {
+  @include hoverChangeColouring($eerie-black, $seasalt);
+}
+
+.rows_size, .columns_size, .matrix_form__value {
+  @include hoverChangeColouring($antiflash-white, $eerie-black)
+}
+
+// Animaciones >>
+@keyframes floating {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(15%);
+    }
+}
+
+.on_floating {
+  animation-name: floating;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

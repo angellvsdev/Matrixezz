@@ -28,7 +28,7 @@ public class MatrixController {
 	private MatrixService matrixService;
     @PostMapping("/add")
     public MatrixResponse sumMatrices(@RequestBody MatrixListRequest request) {
-        Matrix matrix1 = request.getMatrix1();
+    	Matrix matrix1 = request.getMatrix1();
         Matrix matrix2 = request.getMatrix2();
         // Perform matrix addition
         Matrix result = matrixService.add(matrix1, matrix2);

@@ -1,0 +1,114 @@
+#matrix_pack {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 45vh;
+}
+
+.ui_logo {
+    height: 8rem;
+    width: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-self: center;
+    align-self: center;
+    text-shadow: 4px 4px 1px $onyx;
+    border-radius: 50%;
+    background: $seasalt;
+    margin: 20px 0;
+    box-shadow: 4px 4px 1px $onyx;
+
+    &__logo {
+        font-size: 5rem;
+        font-family: $title-font;
+        color: $slate-gray;
+    }
+}
+
+.matrixez {
+    display: flex;
+    align-self: center;
+    height: 80%;
+}
+
+#matrix-01, #matrix-02 {
+    width: 45vw;
+    position: relative;
+    display: inline-flex;
+    align-self: center;
+    justify-content: center;
+    margin: 0 10px;
+    font-family: $title-font;
+    
+    #m-A, #m-B {
+        margin-right: 5px;
+        font-size: 2rem;
+        color: $eerie-black;
+        text-shadow: 2px 2px 1px $seasalt;
+
+    }
+}
+
+.credits {
+    align-self: center;
+    transform: translateY(2rem);
+    font-family: $content-font;
+    font-size: 1.25rem;
+}
+
+.matrix_form {
+    display: grid;
+    width: 12rem;
+    height: 12rem;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(2, auto);
+    gap: 5px;
+    transform: skewX(-10deg);
+
+    &__value {
+        @include button-styleship;
+        @include elements-shaping;
+        border: none;
+        width: calc(12rem / 2);
+        height: calc(12rem / 2);
+        font-size: 2rem;
+        font-family: $content-font;
+    }
+}
+
+a {
+    color: $slate-gray;
+}
+
+.dimensions {
+    position: absolute;
+    top: -30%;
+    transform: skewX(-10deg);
+    font-family: $content-font;
+
+    .rows_size, .columns_size {
+        width: 3.25rem;
+        height: 2.5rem;
+        background: $slate-gray;
+        color: $seasalt;
+        font-size: 1.25rem;
+        text-align: center;
+        border-radius: $borders-shape;
+
+        option {
+            @include elements-shaping;
+            border-radius: $borders-shape;
+        }
+    }
+
+    .set_dim {
+        background: $onyx;
+        color: $seasalt;
+        width: 3.25rem;
+        height: 2.5rem;
+        border: none;
+        padding: 0;
+        @include elements-shaping;
+    }
+}

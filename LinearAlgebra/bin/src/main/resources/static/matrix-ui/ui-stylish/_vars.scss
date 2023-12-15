@@ -1,0 +1,43 @@
+// Tipografías >>
+$sub-title-font: 'Fanwood Text', serif;
+$content-font: 'Frank Ruhl Libre', serif;
+$title-font: 'Rokkitt', serif;
+
+
+// Paleta de colores principal >>
+$seasalt: rgba(248, 249, 250, 1);
+$antiflash-white: rgba(233, 236, 239, 1);
+$platinum: rgba(222, 226, 230, 1);
+$french-gray: rgba(206, 212, 218, 1);
+$french-gray-2: rgba(173, 181, 189, 1);
+$slate-gray: rgba(108, 117, 125, 1);
+$outer-space: rgba(73, 80, 87, 1);
+$onyx: rgba(52, 58, 64, 1);
+$eerie-black: rgba(33, 37, 41, 1);
+
+// Paleta de colores principal (Gradientes) >>
+$gradient-top: linear-gradient(0deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-right: linear-gradient(90deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-bottom: linear-gradient(180deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-left: linear-gradient(270deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-top-right: linear-gradient(45deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-bottom-right: linear-gradient(135deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-top-left: linear-gradient(225deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-bottom-left: linear-gradient(315deg, #f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+$gradient-radial: radial-gradient(#f8f9faff, #e9ecefff, #dee2e6ff, #ced4daff, #adb5bdff, #6c757dff, #495057ff, #343a40ff, #212529ff);
+
+$borders-shape: 2.5px;
+$elements-shadows: 10px 10px 15px rgba(3, 3, 3, 0.644);
+
+
+// Componentes UI >>
+@mixin elements-shaping {
+    box-shadow: $elements-shadows;
+    border-radius: $borders-shape;
+}
+
+@mixin button-styleship {
+    background: $eerie-black;
+    color: $seasalt;
+    text-align: center;
+}
