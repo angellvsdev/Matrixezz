@@ -1,8 +1,11 @@
+@import "././anims-and-transitions.scss";
+
 #matrix_pack {
     display: flex;
     justify-content: center;
     flex-direction: column;
     height: 45vh;
+    transform: translateY(2rem);
 }
 
 .ui_logo {
@@ -111,4 +114,61 @@ a {
         padding: 0;
         @include elements-shaping;
     }
+}
+
+.matrix_parameters{
+    position: absolute;
+    display: flex;
+    flex-flow: row nowrap;
+    top: 15vh;
+    padding: 0px;
+
+    &__modifier {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 3rem;
+        width: 3rem;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(-45deg, $french-gray, $seasalt);
+        margin: 10px 2px;
+        padding: 0;
+    }
+}
+
+.size_locker {
+    box-shadow: $elements-shadows;
+    color: #ebc90c;
+}
+
+.add_matrix {
+    @include hoverChangeColouring(linear-gradient(-45deg, $eerie-black, $onyx), $seasalt);
+    cursor: cell;
+    box-shadow: $elements-shadows;
+    //color: #0c0235;
+}
+
+.show_steps {
+    @include hoverChangeColouring(linear-gradient(-45deg, $eerie-black, $onyx), $seasalt);
+    cursor: help;
+    box-shadow: $elements-shadows;
+    //color: #22543d;
+}
+
+.check_A, .check_B {
+    @include hoverChangeColouring(linear-gradient(-45deg, $french-gray, $seasalt), $eerie-black);
+    background: $eerie-black;
+    box-shadow: $elements-shadows;
+
+    & > p {
+        font-size: 1.7rem;
+        text-shadow: 1.5px 1.5px 2px $seasalt;
+    }
+
+}
+
+#matrix-02 {
+    display: none;
 }

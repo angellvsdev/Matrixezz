@@ -93,14 +93,14 @@ function setMatrixes(entranceID) {
 
 // La clase ProcessMatrixes se encarga de procesar operaciones simples que incluyan solo dos matrices.
 export class MatrixProcessBy {
-    constructor(endpoint) {
+    constructor() {
         this.matrix_A = document.getElementById("A")
         this.matrix_B = document.getElementById("B")
         this.rows_A = this.matrix_A.dataset.total_rows
         this.cols_A = this.matrix_A.dataset.total_columns
         this.rows_B = this.matrix_B.dataset.total_rows
         this.cols_B = this.matrix_B.dataset.total_columns
-        this.endpoint = endpoint
+        this.endpoint = document.getElementById("shot-operations").dataset.protocol
     }
    
     solveMatrixesThrough() {
@@ -111,8 +111,9 @@ export class MatrixProcessBy {
         const UIMatrixInstanceA = new Matrix(parseInt(this.rows_A), parseInt(this.cols_A), setMatrixes("A")),
               UIMatrixInstanceB = new Matrix(parseInt(this.rows_B), parseInt(this.cols_B), setMatrixes("B"))
 
-        const matrix1 = UIMatrixInstanceA.toJSON(),
-              matrix2 = UIMatrixInstanceB.toJSON()
+        if(this.endpoint === "add" || this.endpoint === "subtract" || this.endpoint === "multiply") {           
+            const matrix1 = UIMatrixInstanceA.toJSON(),
+                  matrix2 = UIMatrixInstanceB.toJSON()
 
             fetch(`http://localhost/matrix/${this.endpoint}`, {
                 method: "POST",
@@ -128,50 +129,81 @@ export class MatrixProcessBy {
             .then(responseContent => {
                 return buildMatrixDataComponentWith(responseContent)
             })
-            .catch(error => {})
-        
+            .catch(error => console.error(error.status))
+        }
 
-        if (protocolType === "unary") {
-            if (protocolHasSteps) {
-                // Maqueta los pasos
-            }
+        if(this.endpoint === "multiplyScalar") {
+            const matrix = UIMatrixInstanceA.toJSON(),
+                  scalarString = this.matrix_B.children[0].value,
+                  scalarInteger = Number.parseFloat(scalarString)
 
-            fetch(`http://localhost/matrix/${this.endpoint}`, {
+            fetch(`http://localhost/matrix/${this.endpoint}?scalar=${scalarInteger.toFixed(2)}`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    matrix1
+                    ...matrix
                 })
             })
             .then(response => response.json())
             .then(responseContent => {
-                console.log(responseContent)
+                return buildMatrixDataComponentWith(responseContent)
             })
-            .catch(error => console.log(error.status))
+            .catch(error => console.error(error.status))
+        }
+
+        if (protocolType === "unary") {
+            if (protocolHasSteps) {
+                const inputMatrix = UIMatrixInstanceA.toJSON()
+
+                fetch(`http://localhost/matrix/${this.endpoint}`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ...inputMatrix
+                    })
+                })
+                .then(response => response.json())
+                .then(responseContent => {
+                    console.log(responseContent)
+                })
+                .catch(error => console.error(error))
+            } else {
+                const inputMatrix = UIMatrixInstanceA.toJSON()
+
+                fetch(`http://localhost/matrix/${this.endpoint}`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ...inputMatrix
+                    })
+                })
+                .then(response => response.json())
+                .then(responseContent => {
+                    if (this.endpoint === "calculateDeterminant") {
+                        const determinantCellNode = document.querySelector('input[name="A11"').cloneNode()
+                        determinantCellNode.value = `${responseContent}`
+                        determinantCellNode.style.width = "6rem"
+                        determinantCellNode.style.height = "6rem"
+                        determinantCellNode.style.fontSize = "2rem"
+
+                        document.getElementById("rA").value = 1
+                        document.getElementById("cA").value = 1
+
+                        this.matrix_A.innerHTML = ""
+
+                        return this.matrix_A.appendChild(determinantCellNode)
+                    } else {
+                       return buildMatrixDataComponentWith(responseContent)
+                    }
+                })
+                .catch(error => console.error(error))
+            }
         }
     }
 }
-
-// const matrixInstanceA = new Matrix(2, 2, [["1", "4"],["9", "6"]]),
-//       matrixInstanceB = new Matrix(2, 2, [["9", "19"],["1", "4"]])
-                
-// const matrix1 = matrixInstanceA.toJSON();
-// const matrix2 = matrixInstanceB.toJSON();
-
-// fetch("http://localhost/matrix/multiply", {
-//         method: "POST",
-//     	headers: {
-//     		'Content-Type': 'application/json'
-//     	},
-//     	body: JSON.stringify({
-//     		matrix1,
-//     		matrix2
-//     	})
-// 	})
-// 	.then(response => response.json())
-//     .then(responseContent => {
-//     	console.log(responseContent)
-//     })
-//     .catch(error => console.log(error.status))

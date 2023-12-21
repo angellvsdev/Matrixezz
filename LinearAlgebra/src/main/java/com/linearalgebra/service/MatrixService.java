@@ -202,7 +202,7 @@ public class MatrixService {
 		// Copia la matriz original en la parte izquierda de la matriz aumentada.
 		for (int i = 0; i < matrix.getRows(); i++) {
 			for (int j = 0; j < matrix.getCols(); j++) {
-				augmentedMatrix.setData(i, j, matrix.getData(j, i));
+				augmentedMatrix.setData(i, j, matrix.getData(i, j));
 			}
 			// Rellena la matriz identidad en la parte derecha de la matriz aumentada.
 			augmentedMatrix.setData(i, i + matrix.getCols(), new Value(1.0));

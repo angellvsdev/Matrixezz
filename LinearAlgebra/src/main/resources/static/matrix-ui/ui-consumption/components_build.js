@@ -1,5 +1,4 @@
-let DOMMatrixNodeCopy_A = document.getElementById("A").cloneNode(true),
-    DOMMatrixNodeCopy_B = document.getElementById("B").cloneNode(true)
+const DOMMatrixB = document.getElementById("B").cloneNode()
 
 export function buildMatrixTemplateComponent(matrixSign) {
     let insertionSection = document.getElementById(`${matrixSign}`),
@@ -73,14 +72,15 @@ export function buildMatrixDataComponentWith(resultMatrix) {
 
     const matrixContainerB = document.getElementById("matrix-02")
 
-    for(let i = 0; i < resultMatrix.rows;i++) {
-        matrixField.push([])
-        for (let j = 0; j < resultMatrix.cols; j++) {
-            matrixField[i][j] = matrixResults[j]
-        }
-    }
+    // if (matrixContainerB.style.display === "none" && document.getElementById("shot-operations").dataset.protocol_type === "binary") {
+    //     return
+    // }
 
-    matrixContainerB.remove()
+    for(let i = 0; i < resultMatrix.rows;i++) {
+        let valuesSlice = matrixResults.splice(0, resultMatrix.cols)
+
+        matrixField.push(valuesSlice)
+    }
 
     rows_A.value = `${resultMatrix.rows}`
     columns_A.value = `${resultMatrix.cols}`
@@ -89,28 +89,30 @@ export function buildMatrixDataComponentWith(resultMatrix) {
     matrixModuleForm_A.dataset.total_rows = `${resultMatrix.rows}`
     matrixModuleForm_A.dataset.total_columns = `${resultMatrix.cols}`
     matrixModuleForm_A.style.gridTemplateRows = `repeat(${resultMatrix.rows}, auto)`
-    matrixModuleForm_A.style.gridTemplateColumns = `repeat(${resultMatrix.columns}, auto)`
+    matrixModuleForm_A.style.gridTemplateColumns = `repeat(${resultMatrix.cols}, auto)`
 
-    for(let i = 1; i <= resultMatrix.rows;i++) {
-        for(let j = 1; j <= resultMatrix.cols;j++) {
+    for(let i = 0; i < resultMatrix.rows;i++) {
+        for(let j = 0; j < resultMatrix.cols;j++) {
             let matrixCell = document.createElement("input")
     
             matrixCell.setAttribute("type", "text")
-            matrixCell.setAttribute("name", `A${i}${j}`)
-            matrixCell.setAttribute("placeholder", `A${i}${j}`)
+            matrixCell.setAttribute("name", `A${i+1}${j+1}`)
+            matrixCell.setAttribute("placeholder", `A${i+1}${j+1}`)
             matrixCell.classList.add("matrix_form__value")
             matrixCell.style.width = `calc(12rem / ${resultMatrix.cols})`
-            matrixCell.style.height = `calc(12 / ${resultMatrix.rows})`
+            matrixCell.style.height = `calc(12rem / ${resultMatrix.rows})`
             matrixCell.style.fontSize = "1rem"
-            matrixCell.dataset.row = `${i}`
-            matrixCell.dataset.column = `${j}`
-            console.log(matrixCell)
+            matrixCell.dataset.row = `${i+1}`
+            matrixCell.dataset.column = `${j+1}`
+            matrixCell.value = `${matrixField[i][j]}`
 
             cellsInsertionFragment.appendChild(matrixCell)
         }
     }
+    
+    matrixContainerB.style.display = "none"
+    document.getElementById("matrix-01").style.display = "flex"
 
-    console.log(resultMatrix.data)
     return matrixModuleForm_A.appendChild(cellsInsertionFragment)
     
 }
@@ -134,6 +136,32 @@ document.addEventListener("click", e => {
         resolveTrigger.dataset.protocol = `${e.target.dataset.operation}`
         resolveTrigger.dataset.protocol_type = `${e.target.dataset.operation_type}`
 
+        const DOMMatrixStepsFlag = document.querySelector(".show_steps")
+
+        if (e.target.dataset.operation !== "gaussianEliminationWithSteps" && document.querySelector(".matrix_parameters").contains(DOMMatrixStepsFlag)) {
+            document.querySelector(".matrix_parameters > .show_steps").remove()
+        }
+
+        
+        if (e.target.dataset.operation !== "gaussJordanEliminationWithSteps" && document.querySelector(".matrix_parameters").contains(DOMMatrixStepsFlag)) {
+            document.querySelector(".matrix_parameters > .show_steps").remove()
+        }
+
+        
+        if (e.target.dataset.operation !== "inverseMatrixWithSteps" && document.querySelector(".matrix_parameters").contains(DOMMatrixStepsFlag)) {
+            document.querySelector(".matrix_parameters > .show_steps").remove()
+        }
+
+        const DOMMatrixLockFlag = document.querySelector(".size_locker")
+
+        if (e.target.dataset.operation !== "multiplyScalar" && document.querySelector(".matrix_parameters").contains(DOMMatrixLockFlag)) {
+            document.querySelector(".matrix_parameters > .size_locker").remove()
+
+            document.getElementById("rB").disabled = false
+            document.getElementById("cB").disabled = false
+            document.getElementById("set_B").disabled = false
+        }
+
         if (e.target.dataset.operation_steps) {
             resolveTrigger.dataset.protocol_has_steps = `${e.target.dataset.operation_steps}`
         } else {
@@ -141,5 +169,67 @@ document.addEventListener("click", e => {
         }
 
         resolveTrigger.classList.add("on-selection")
+    }
+
+    if (e.target.matches('button[data-operation="multiplyScalar"')) {
+        if (document.querySelector(".matrix_parameters > .size_locker")) {
+            document.querySelector(".matrix_parameters > .size_locker").remove()
+        }
+
+        const DOMMatrixSizeLockerFlagContainer = document.createElement("div"),
+              DOMMatrixSizeLockerFlagIndicator = document.createElement("div"),
+              DOMMatrixSizeLockerFlagIcon = document.createElement("i")
+
+        DOMMatrixSizeLockerFlagContainer.classList.add("matrix_parameters")
+        DOMMatrixSizeLockerFlagIndicator.classList.add("matrix_parameters__modifier")
+        DOMMatrixSizeLockerFlagIndicator.classList.add("size_locker")
+        DOMMatrixSizeLockerFlagIcon.classList.add("fa-solid")
+        DOMMatrixSizeLockerFlagIcon.classList.add("fa-lock")
+
+        document.getElementById("B").remove()
+
+        DOMMatrixB.innerHTML = '<input class="matrix_form__value type="text" name="B11" data-row="1" data-column="1" placeholder="B11">'
+
+        document.getElementById("matrix-02").appendChild(DOMMatrixB)
+
+        DOMMatrixSizeLockerFlagContainer.appendChild(DOMMatrixSizeLockerFlagIndicator)
+        DOMMatrixSizeLockerFlagIndicator.appendChild(DOMMatrixSizeLockerFlagIcon)
+
+        document.querySelector(".matrix_parameters").appendChild(DOMMatrixSizeLockerFlagIndicator)
+
+        document.getElementById("rB").disabled = true
+        document.getElementById("rB").value = 1
+        document.getElementById("cB").disabled = true
+        document.getElementById("cB").value = 1
+        document.getElementById("set_B").disabled = true
+    }
+
+    if (e.target.matches(".add_matrix, .add_matrix > i")) {
+        document.getElementById("matrix-02").style.display = "flex"
+    }
+
+    if (e.target.matches(".check_A, .check_A > p")) {
+        document.getElementById("matrix-01").style.display = "flex"
+        document.getElementById("matrix-02").style.display = "none"
+    }
+
+    if (e.target.matches(".check_B, .check_B > p")) {
+        document.getElementById("matrix-02").style.display = "flex"
+        document.getElementById("matrix-01").style.display = "none"
+    }
+
+    if (e.target.matches('button[data-operation="gaussianEliminationWithSteps"], button[data-operation="gaussJordanEliminationWithSteps"], button[data-operation="inverseMatrixWithSteps"]')) {
+        if (document.querySelector(".matrix_parameters > .show_steps")) {
+            document.querySelector(".matrix_parameters > .show_steps").remove()
+        }
+
+        const protocolHasStepsFlag = document.createElement("button")
+        protocolHasStepsFlag.classList.add("matrix_parameters__modifier")
+        protocolHasStepsFlag.classList.add("show_steps")
+        protocolHasStepsFlag.setAttribute("type", "button")
+
+        protocolHasStepsFlag.innerHTML = '<i class="fa-solid fa-circle-info"></i>'
+        
+        document.querySelector(".matrix_parameters").appendChild(protocolHasStepsFlag)
     }
 })

@@ -91,8 +91,10 @@ public class MatrixController {
     @PostMapping("/inverseMatrix")
     public ResponseEntity<?> inverseMatrix(@RequestBody MatrixRequest matrixRequest) {
         Matrix inputMatrix = mapper.map(matrixRequest, Matrix.class);
+        System.out.println(inputMatrix);
         try {
             Matrix resultMatrix = matrixService.calculateInverse(inputMatrix);
+            System.out.println(resultMatrix);
             return ResponseEntity.ok(new MatrixResponse(resultMatrix));
         } catch (ArithmeticException e) {
             // Manejar la excepción según tus necesidades, por ejemplo, devolver un mensaje de error

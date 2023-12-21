@@ -95,11 +95,69 @@
   color: rgb(33, 37, 41);
 }
 
+.menu-opening:hover .menu__opt-compounds {
+  display: block;
+  opacity: 1;
+}
+
+.option-colors-change {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.option-colors-change:hover {
+  background: rgb(248, 249, 250);
+  color: rgb(33, 37, 41);
+  border: 1.5px dashed rgb(33, 37, 41);
+}
+
+#shot-operations, .log {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+#shot-operations:hover, .log:hover {
+  background: rgb(33, 37, 41);
+  color: rgb(248, 249, 250);
+  border: 1.5px dashed rgb(248, 249, 250);
+}
+
+.rows_size, .columns_size, .matrix_form__value {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+.rows_size:hover, .columns_size:hover, .matrix_form__value:hover {
+  background: rgb(233, 236, 239);
+  color: rgb(33, 37, 41);
+  border: 1.5px dashed rgb(33, 37, 41);
+}
+
+@keyframes floating {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(15%);
+  }
+}
+.on_floating {
+  animation-name: floating;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 #matrix_pack {
   display: flex;
   justify-content: center;
   flex-direction: column;
   height: 45vh;
+  transform: translateY(2rem);
 }
 
 .ui_logo {
@@ -206,6 +264,82 @@ a {
   padding: 0;
   box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
   border-radius: 2.5px;
+}
+
+.matrix_parameters {
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  top: 15vh;
+  padding: 0px;
+}
+.matrix_parameters__modifier {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(-45deg, rgb(206, 212, 218), rgb(248, 249, 250));
+  margin: 10px 2px;
+  padding: 0;
+}
+
+.size_locker {
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  color: #ebc90c;
+}
+
+.add_matrix {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  cursor: cell;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+}
+.add_matrix:hover {
+  background: linear-gradient(-45deg, rgb(33, 37, 41), rgb(52, 58, 64));
+  color: rgb(248, 249, 250);
+  border: 1.5px dashed rgb(248, 249, 250);
+}
+
+.show_steps {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  cursor: help;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+}
+.show_steps:hover {
+  background: linear-gradient(-45deg, rgb(33, 37, 41), rgb(52, 58, 64));
+  color: rgb(248, 249, 250);
+  border: 1.5px dashed rgb(248, 249, 250);
+}
+
+.check_A, .check_B {
+  transition-property: background color border;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  background: rgb(33, 37, 41);
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+}
+.check_A:hover, .check_B:hover {
+  background: linear-gradient(-45deg, rgb(206, 212, 218), rgb(248, 249, 250));
+  color: rgb(33, 37, 41);
+  border: 1.5px dashed rgb(33, 37, 41);
+}
+.check_A > p, .check_B > p {
+  font-size: 1.7rem;
+  text-shadow: 1.5px 1.5px 2px rgb(248, 249, 250);
+}
+
+#matrix-02 {
+  display: none;
 }
 
 #log_and_results_pack {
