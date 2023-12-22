@@ -140,21 +140,10 @@ a {
 
 .size_locker {
     box-shadow: $elements-shadows;
-    color: #ebc90c;
-}
-
-.add_matrix {
-    @include hoverChangeColouring(linear-gradient(-45deg, $eerie-black, $onyx), $seasalt);
-    cursor: cell;
-    box-shadow: $elements-shadows;
-    //color: #0c0235;
 }
 
 .show_steps {
-    @include hoverChangeColouring(linear-gradient(-45deg, $eerie-black, $onyx), $seasalt);
-    cursor: help;
     box-shadow: $elements-shadows;
-    //color: #22543d;
 }
 
 .check_A, .check_B {
