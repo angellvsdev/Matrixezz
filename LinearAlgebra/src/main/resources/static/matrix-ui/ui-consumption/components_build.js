@@ -1,4 +1,7 @@
 const DOMMatrixB = document.getElementById("B").cloneNode()
+let DOMMatrixStepScheme = document.querySelector(".steps_list").cloneNode(true)
+
+document.querySelector(".steps_list").remove()
 
 export function buildMatrixTemplateComponent(matrixSign) {
     let insertionSection = document.getElementById(`${matrixSign}`),
@@ -117,6 +120,65 @@ export function buildMatrixDataComponentWith(resultMatrix) {
     
 }
 
+export function buildUIMatrixStepsFormulary(resultMatrix) {
+    let listIndex = 0,
+    stepsListFragment = new DocumentFragment()
+
+    resultMatrix.stepsWithMatrices.forEach(request_step => {
+        let DOMStepAccessContainer = document.createElement("div"),
+        DOMStepAccessButton = document.createElement("button")
+        
+        DOMStepAccessContainer.classList.add("list__step")
+        DOMStepAccessContainer.classList.add("step-btn")
+        DOMStepAccessButton.classList.add("protocol_step")
+        DOMStepAccessButton.textContent = `${listIndex + 1}`
+        DOMStepAccessButton.dataset.uiCoordinates = `-${listIndex}00vw`
+
+        DOMStepAccessContainer.appendChild(DOMStepAccessButton)
+
+        let copy = DOMMatrixStepScheme.cloneNode(true)
+
+        copy.id = `step-tag-${listIndex}`
+        copy.style.left  = `${listIndex}00vw`
+        copy.querySelector(".step__tag").textContent = `${request_step.step}`
+
+        const matrixResults = cleanData(request_step.matrix.data), cellsInsertionFragment = new DocumentFragment()
+        let matrixField = []
+    
+        for(let i = 0; i < request_step.matrix.rows;i++) {
+            let valuesSlice = matrixResults.splice(0, request_step.matrix.cols)
+    
+            matrixField.push(valuesSlice)
+        }
+    
+        copy.querySelector(".step__scheme").style.gridTemplateRows = `repeat(${request_step.matrix.rows}, auto)`
+        copy.querySelector(".step__scheme").style.gridTemplateColumns = `repeat(${request_step.matrix.cols}, auto)`
+        copy.querySelector(".step__scheme").innerHTML = ""
+    
+    
+        for(let i = 0; i < request_step.matrix.rows;i++) {
+            for(let j = 0; j < request_step.matrix.cols;j++) {
+                let schemeStepCell = document.createElement("div")
+                schemeStepCell.classList.add("scheme_cell")
+                schemeStepCell.textContent = `${matrixField[i][j]}`
+                cellsInsertionFragment.appendChild(schemeStepCell)
+            }
+        }
+    
+        copy.querySelector(".step__scheme").appendChild(cellsInsertionFragment)
+        copy.querySelector(".rows_tag").textContent = `Filas : ${request_step.matrix.rows}`
+        copy.querySelector(".cols_tag").textContent = `Columnas: ${request_step.matrix.cols}`
+
+        document.querySelector(".option_list").appendChild(DOMStepAccessContainer)
+    
+        listIndex++
+
+        return stepsListFragment.appendChild(copy)
+    })
+
+    document.querySelector(".steps_container").appendChild(stepsListFragment)
+}
+
 document.addEventListener("click", e => {
     if (e.target.matches("#set_A, #set_A > i")) {
         buildMatrixTemplateComponent("A")
@@ -231,5 +293,10 @@ document.addEventListener("click", e => {
         protocolHasStepsFlag.innerHTML = '<i class="fa-solid fa-circle-info"></i>'
         
         document.querySelector(".matrix_parameters").appendChild(protocolHasStepsFlag)
+    }
+
+    if (e.target.matches(".list__step .close_protocol_steps, .close_protocol_steps *")) {
+        document.querySelector(".steps_container").style.top = "-100vh"
+        document.querySelector(".option_list").style.bottom = "-10vh"
     }
 })

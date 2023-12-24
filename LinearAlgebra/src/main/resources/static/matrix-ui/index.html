@@ -160,31 +160,31 @@
     </section>
     <section id="log_and_results_pack">
       <ul class="log">
-        <li class="empty_status">
-          <p class="empty_status-text"><i class="fa-solid fa-ban"></i> Sin operaciones en juego.</p>
+        <li class="steps_status">
+          <p class="steps_status-text"><i class="fa-solid fa-ban"></i> Sin operaciones en juego.</p>
         </li>
       </ul>
+      <div class="steps_container"></div>
       <ul class="steps_list">
         <li class="steps_list__step">
-          <h1 class="step__tag">(Paso 2: Fila 1 - Fila 3)</h1>
+          <h1 class="step__tag"></h1>
         </li>
         <li class="steps_list__step">
-          <div class="step__scheme"></div>
-        </li>
-        <li class="steps_list__step">
-          <div class="step__matrix_size_tag">
-            <p class="size_tag" id="rows-tag">Filas ›› </p>
-            <p class="size_tag" id="cols-tag">Columnas ››</p>
+          <div class="step__scheme">
           </div>
         </li>
         <li class="steps_list__step">
-          <button class="step__backward" type="button" name="Atras">Atras</button>
+          <div class="step__matrix_size_tag">
+            <p class="size_tag rows_tag"></p>
+            <p class="size_tag cols_tag"></p>
+          </div>
         </li>
-        <li class="steps_list__step">
-          <button class="step__forward" type="button" name="Siguiente">Siguiente</button>
-        </li>
-        <li class="steps_list__step"><button class="close_protocol_steps"><i class="fa-solid fa-slash"></i></button></li>
       </ul>
+      <div class="option_list">
+        <div class="list__step close-btn">
+          <button class="close_protocol_steps"><i class="fa-solid fa-circle-xmark"></i></button>
+        </div>
+      </div>
       <button id="shot-operations" type="submit">
         <p class="opers_txt"><i class="fa-solid fa-check"></i> Resolver</p>
       </button>

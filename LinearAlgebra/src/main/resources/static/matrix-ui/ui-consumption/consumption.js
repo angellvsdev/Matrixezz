@@ -1,6 +1,4 @@
-import { buildMatrixDataComponentWith } from "./components_build.js";
-
-
+import { buildMatrixDataComponentWith, buildUIMatrixStepsFormulary } from "./components_build.js";
 
 // La clase Matrix se encarga de generar una matriz bidimensional a partir de filas y columnas y una matriz de datos dada, la instancia de esta es lo que se envía para el API.
 class Matrix {
@@ -155,7 +153,11 @@ export class MatrixProcessBy {
 
         if (protocolType === "unary") {
             if (protocolHasSteps) {
-                const inputMatrix = UIMatrixInstanceA.toJSON()
+                const inputMatrix = UIMatrixInstanceA.toJSON(),
+                      DOMInstructionsTrigger = document.querySelector(".log")
+
+                DOMInstructionsTrigger.classList.add("steps_on")
+                DOMInstructionsTrigger.innerHTML = `<li class="steps_status"><p class="steps_status-text"><i class="fa-solid fa-circle-check"></i> Procedimiento</p></li>`
 
                 fetch(`http://localhost/matrix/${this.endpoint}`, {
                     method: "POST",
@@ -168,7 +170,7 @@ export class MatrixProcessBy {
                 })
                 .then(response => response.json())
                 .then(responseContent => {
-                    console.log(responseContent)
+                    buildUIMatrixStepsFormulary(responseContent)
                 })
                 .catch(error => console.error(error))
             } else {
