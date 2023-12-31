@@ -34,7 +34,7 @@
               </button>
             </li>
             <li class="menu__opt menu-opening" id="compounds-methods">
-              <button class="menu__opt__compounds_action option-colors-change" type="button" data-operation="multiply" data-operation_type="binary">
+              <button class="menu__opt__compounds_action option-colors-change" type="button">
                 <p class="button__txt">Compuestos</p>
                 <i class="fa-solid fa-calculator"></i>
               </button>
@@ -85,12 +85,6 @@
                   <button class="compounds__op-button option-colors-change" type="button" data-operation="transpose" data-operation_type="unary">
                     <p class="button__txt">Traspuesta</p> 
                     <i class="fa-solid fa-arrows-spin"></i>
-                  </button>
-                </li>
-                <li class="compounds__op">
-                  <button class="compounds__op-button option-colors-change" type="button" data-operation="unit" data-operation_type="unary">
-                    <p class="button__txt">M. Unidad</p>
-                    <i class="fa-solid fa-1"></i>
                   </button>
                 </li>
               </ul>
@@ -159,9 +153,12 @@
       </<div>
     </section>
     <section id="log_and_results_pack">
+      <div class="error_alert">
+        <p class="error_alert__message"></p>
+      </div>
       <ul class="log">
         <li class="steps_status">
-          <p class="steps_status-text"><i class="fa-solid fa-ban"></i> Sin operaciones en juego.</p>
+          <p class="steps_status-text"><i class="fa-solid fa-ban"></i> Procedimiento Inexistente</p>
         </li>
       </ul>
       <div class="steps_container"></div>

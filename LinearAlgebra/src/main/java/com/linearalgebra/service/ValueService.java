@@ -28,7 +28,7 @@ public class ValueService {
             } else if (first.isRational() && second.isDouble()) {
                 if (Value.fractionable(second.getDoubleValue())) {
                     Rational rational = Value.fromDouble(second.getDoubleValue());
-                    return new Value(rationalService.add(rational, second.getRationalValue()));
+                    return new Value(rationalService.add(first.getRationalValue(), rational));
                 } else {
                     return new Value(Value.fromRational(first.getRationalValue()) + second.getDoubleValue());
                 }

@@ -1,10 +1,12 @@
 import { MatrixProcessBy } from "./consumption.js"
+import { UnsetStepsList } from "./components_build.js"
 
 document.addEventListener("click", e => {
     //e.preventDefault()
-    if (e.target.matches("#shot-operations")) {
+    if (e.target.matches("#shot-operations, #shot-operations *")) {        
         let operate = new MatrixProcessBy()
 
+        UnsetStepsList()
         operate.solveMatrixesThrough()
     }
 

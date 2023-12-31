@@ -49,7 +49,11 @@
     align-self: center;
     text-shadow: 4px 4px 1px $platinum;
     background: $onyx;
-    display: none;
+    transform: translateY(0vh);
+    transition-property: transform;
+    transition-duration: 1s;
+    transition-delay: 1s;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
     z-index: 1000;
 
     .ui_logo__logo {
@@ -228,3 +232,32 @@
         transform: translateX(125%);
     }
 }
+
+.error_alert {
+    position: absolute;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #ec3737;
+    width: 65vw;
+    height: 15vh;
+    top: -18vh;
+    @include elements-shaping;
+    transform: skewX(-10deg);
+    z-index: 200;
+    font-family: $content-font;
+    padding: 10px;
+    transition-property: top, background;
+    transition-duration: .5s;
+    transition-timing-function: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+    &__message {
+        font-size: 1.15rem;
+        color: $seasalt;
+        transform: skewX(10deg);
+    }
+
+}
+

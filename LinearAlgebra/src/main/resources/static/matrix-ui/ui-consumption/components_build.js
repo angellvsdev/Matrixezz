@@ -24,7 +24,7 @@ export function buildMatrixTemplateComponent(matrixSign) {
     for(let i = 0 ; i < totalCellsIndex; i++) {
         let insertionElement = document.createElement("input")
 
-        insertionElement.setAttribute("class", "matrix_form__value")
+        insertionElement.classList.add("matrix_form__value")
         insertionElement.setAttribute("type", "text")
 
         insertionElement.style.width = `calc(12rem / ${columns})`
@@ -63,6 +63,22 @@ export function cleanData(string) {
     string = string.split(",")
 
     return Array.from(string)
+}
+
+export function UnsetStepsList() {
+    const stepsButtonContainer = document.querySelector(".log"), 
+          stepsButtonContainerMessage = document.querySelector(".steps_status > .steps_status-text"),
+          stepsStagesContainer = document.querySelector(".steps_container"),
+          listSelection = document.querySelector(".option_list")
+
+    stepsButtonContainer.classList.remove("steps_on")
+    stepsButtonContainerMessage.innerHTML = `<i class="fa-solid fa-ban"></i> Procedimiento Inexistente`
+    stepsStagesContainer.innerHTML = ""
+    listSelection.innerHTML = `
+    <div class="list__step close-btn">
+        <button class="close_protocol_steps"><i class="fa-solid fa-circle-xmark"></i></button>
+    </div>
+    `
 }
 
 export function buildMatrixDataComponentWith(resultMatrix) {
@@ -189,6 +205,17 @@ document.addEventListener("click", e => {
     }
 
     if (e.target.matches(".menu__opt-button, .compounds__op-button")) {
+        if (e.target.dataset.operation_type === "unary") {
+            document.querySelector(".check_B").style.display = "none"
+            document.querySelector("#matrix-02").style.display = "none"
+            document.querySelector("#matrix-01").style.display = "flex"
+
+        } else {
+            document.querySelector(".check_B").style.display = "flex"
+        }
+
+        UnsetStepsList()
+
         let resolveTrigger = document.getElementById("shot-operations"),
             menuOptionNodes = document.querySelectorAll(".menu__opt-button, .compounds__op-button, .menu__opt_compounds_action")
 
@@ -299,4 +326,12 @@ document.addEventListener("click", e => {
         document.querySelector(".steps_container").style.top = "-100vh"
         document.querySelector(".option_list").style.bottom = "-10vh"
     }
+
+    if (e.target.matches(".error_alert, .error_alert *")) {
+        document.querySelector(".error_alert").style.top = "-18vh"
+    }
+})
+
+window.addEventListener("load", e => {
+    document.querySelector(".on_load_screen").style.transform = "translateY(-100vh)"
 })

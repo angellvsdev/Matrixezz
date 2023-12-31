@@ -20,7 +20,7 @@
 .menu__opt-button, .menu__opt__compounds_action {
   border: none;
   font-family: "Rokkitt", serif;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   height: 100%;
   transform: skewX(0deg);
   width: 100%;
@@ -70,7 +70,7 @@
   display: inline-flex;
   flex-direction: column;
   font-family: "Rokkitt", serif;
-  font-size: 1.25rem;
+  font-size: 1.05rem;
   justify-content: center;
   position: relative;
   transform: skewX(-10deg);
@@ -87,7 +87,6 @@
   transform: translateX(-100%) translateY(-100%);
   position: absolute;
   display: block;
-  height: 6rem;
 }
 
 .on-selection {
@@ -101,7 +100,7 @@
 }
 
 .option-colors-change {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -113,7 +112,7 @@
 }
 
 #shot-operations, .log {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -125,7 +124,7 @@
 }
 
 .rows_size, .columns_size, .matrix_form__value {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -296,7 +295,7 @@ a {
 }
 
 .check_A, .check_B {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -369,7 +368,11 @@ a {
   align-self: center;
   text-shadow: 4px 4px 1px rgb(222, 226, 230);
   background: rgb(52, 58, 64);
-  display: none;
+  transform: translateY(0vh);
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-delay: 1s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 1000;
 }
 .on_load_screen .ui_logo__logo {
@@ -506,7 +509,7 @@ a {
 .close-btn > button {
   background: linear-gradient(-45deg, #8d1111, #b31a1a);
   color: rgb(248, 249, 250);
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -521,7 +524,7 @@ a {
 }
 
 .protocol_step {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -558,13 +561,40 @@ a {
   transform: translateX(125%);
 }
 
+.error_alert {
+  position: absolute;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #ec3737;
+  width: 65vw;
+  height: 15vh;
+  top: -18vh;
+  box-shadow: 10px 10px 15px rgba(3, 3, 3, 0.644);
+  border-radius: 2.5px;
+  transform: skewX(-10deg);
+  z-index: 200;
+  font-family: "Frank Ruhl Libre", serif;
+  padding: 10px;
+  transition-property: top, background;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.error_alert__message {
+  font-size: 1.15rem;
+  color: rgb(248, 249, 250);
+  transform: skewX(10deg);
+}
+
 .menu-opening:hover .menu__opt-compounds {
   display: block;
   opacity: 1;
 }
 
 .option-colors-change {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -576,7 +606,7 @@ a {
 }
 
 #shot-operations, .log {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
@@ -588,7 +618,7 @@ a {
 }
 
 .rows_size, .columns_size, .matrix_form__value {
-  transition-property: background color border;
+  transition-property: background, color, border;
   transition-duration: 0.5s;
   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
