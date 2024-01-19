@@ -250,7 +250,48 @@ export class MatrixProcessBy {
         }
 
         if (protocolType === "unary") {
-            if (protocolHasSteps) {
+            let determinantIsZero = false
+
+            if (this.endpoint === "gaussJordanElimimination" || this.endpoint === "gaussJordanEliminationWithSteps" || this.endpoint === "gaussElimination" || this.endpoint === "gaussEliminationWithSteps" || this.endpoint === "inverseMatrix" || this.endpoint === "inverseMatrixWithSteps") {
+                const inputMatrix = UIMatrixInstanceA.toJSON()
+
+                fetch(`http://localhost/matrix/calculateDeterminant`, {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ...inputMatrix
+                    })
+                })
+                .then(response => {
+                    return response.json()
+                })
+                .then(responseContent => {
+                    if (responseContent === "0") {
+                        determinantIsZero = true
+                        document.querySelector(".error_alert > .error_alert__message").innerHTML = `<i class="fa-solid fa-skull-crossbones"></i> Error de calculo. Para la inversa, la determinante no puede ser de cero.`                        
+                        throw new Error("Error de reglas de calculo para la inversa.")
+                    }
+                }).then(() => {
+                    document.querySelector(".on_load_screen").style.transform = "translateY(-100vh)"
+                })
+                .catch(error => {
+                    document.querySelector(".error_alert").style.top = "18vh"
+                    document.querySelector(".error_alert").style.background = "#701111"
+
+                    return setTimeout(() => {
+                        document.querySelector(".error_alert").style.top = "-18vh"
+                        document.querySelector(".error_alert").style.background = "#ec3737"
+                    }, 5000)
+                })
+            }   
+
+            if (determinantIsZero) {
+                throw new Error("Error de reglas de calculo para la inversa.")
+            }
+
+            if (protocolHasSteps && !determinantIsZero) {
                 const inputMatrix = UIMatrixInstanceA.toJSON(),
                       DOMInstructionsTrigger = document.querySelector(".log")
 
@@ -263,8 +304,7 @@ export class MatrixProcessBy {
 
                     throw new Error("La matriz A presenta problemas.")
                 }
-            
-
+                
                 DOMInstructionsTrigger.classList.add("steps_on")
                 DOMInstructionsTrigger.innerHTML = `<li class="steps_status"><p class="steps_status-text"><i class="fa-solid fa-circle-check"></i> Procedimiento</p></li>`
 
