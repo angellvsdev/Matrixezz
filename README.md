@@ -1,12 +1,5 @@
-# ☕ Calculadora de Matrices Universal - Proyecto colaborativo
-La calculadora de matrices universal fue proyecto realizado en Pair Programming como una pequeña practica universitaria para nuestra clase de álgebra lineal, lo realizamos usando
-HTML, SCSS y Vanilla JavaScript para el lado del FrontEnd y Java con Springboot y Maven para el lado del BackEnd y habilitamos un host de pruebas utilizando Hamachi. Si bien
-la solución e idea de un proyecto como este de algun modo podría ser implementada sin la necesidad de un BackEnd, la idea fue echar practicas del trabajo en equipo y aprender un poco,
-a continuación dejamos las respectivas documentaciones...
+# 🧮 Matrixezz | A totally complete matrices theorem calculator
+Matrixezz is a project coming from the collaboration between two programmers; a specialized Frontend (myself), and a colleague experienced in Backend (Brizhel), emerged as a contribution idea for our linear algebra class, which we discussed and carried out, solving flawlessly the need to solve the university theorems concerning the module of matrices in linear algebra. This work was possible thanks to the flawless and well-founded combination of HTML, CSS + SCSS and Vanilla JavaScript technologies for the client side, and a well implemented and polished Backend developed by (Brizhel) using Java + Springboot and Maven.  This project took about 2 months to complete and deploy, which was done by packaging the application in a Java executable. We sincerely hope it will be of great use and pleasure for you.
 
-# 📚 Documentación
-`[Adjuntar]`
-
-## 💻 Colaboradores:
-- [Angel Vera](https://github.com/angellvsdev)
-- [Reny Mireles](https://github.com/Brizhel)
+# 🛠 Approach & system architecture
+The system was realized with a Frontend to Backend classic architecture, using MVC model for the API's, where we decided to use the Backend server for all the calculus modules of matrices, where this modules are actioned by the user inputs from the client which sends a request to the server with the matrices involded in the operations, returning the result matrix and laying it on the user-interface. Of course, it has security protocols for all the exceptions, both in the Frontend and Backend as well, securing the quality and guarantee the most accurate results at the calculus using this theorem.
