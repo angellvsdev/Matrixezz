@@ -56,8 +56,7 @@ For the case of the Gaussian method, we got to take in count that normally it is
 <img src="https://imgur.com/hSRsgEs.jpg" width="900px">
 
 ---
-Now, we don't have to settle just with the result, if we need a detailed list of steps, you can add the steps flags in the solution, and the result will render in the steps module, you can open it, and check all the required steps to complete the solution. Let's see an example using the same **Matrix A** as in the past excercise:
-/* Video. */
+Now, we don't have to settle just with the result, if we need a detailed list of steps, you can add the steps flags in the solution, and the result will render in the steps module, you can open it, and check all the required steps to complete the solution.
 
 ## 📖 Gauss Jordan + steps
 In this case, we just follow the rules the same way as with the Gauss method, let's give it a try using the following excercise:
@@ -66,9 +65,7 @@ In this case, we just follow the rules the same way as with the Gauss method, le
 - **New Matrix A: [[1, 2/3, 1/3, 4/3], [0, 1, -7, 14], [0, 0, 1, -5]]**
 <img src="https://imgur.com/WWvoZxn.jpg" width="900px">
 
-The same way, we can use this method including the solution steps:
-- **New Matrix A + steps:**
-/* Video */
+The same way, we can use this method including the solution steps.
 
 ## 📖 Classic Inverse Matrix
 Matrixezz also includes the classical solution protocol to find the inverse matrix in an excercise, in this case, the matrix to solve got to be a squared matrix, in example, the matrix got to have the same size both for his rows and his columns. Let's give it a try with the following excercise:
@@ -79,6 +76,19 @@ So, this way, we obtain the following result for a squared matrix:
 <img src="https://imgur.com/YnWl1CS.jpg" width="900px">
 
 ---
-We can also get the steps from this option:
-/* Video */
+We can also get the steps from this option.
+---
+
+# 📖 Determinant & transpose
+For this cases, we just use a single matrix to operate, is enough just with fill the values in the matrix that we want to work, choose the option and resolve it. Let's took as example for this two methods, the following matrix:
+- **Matrix A: [[1, 2, 3], [1, 1, -1], [2, 0, 5]]**
+<img src="https://imgur.com/ZKab9HI.jpg" width="600px">
+
+**Determinant**
+
+<img src="https://imgur.com/PWBMuNR.jpg" width="900px">
+
+**Transpose**
+
+<img src="https://imgur.com/DwGCZHr.jpg" width="900px">
 
