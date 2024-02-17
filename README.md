@@ -92,3 +92,6 @@ For this cases, we just use a single matrix to operate, is enough just with fill
 
 <img src="https://imgur.com/DwGCZHr.jpg" width="900px">
 
+# 📖 Security and normal flow using the app
+In Matrixezz, the UI is kind with the user, and so easy to perform the operations we want to over the matrix we want to solve. Of course, we implemented security protocols both in the client-side and server-side, this way, we secure the quality and useful of the application for the purposes it was made for. Let's see a normal flux and the preventions of the application in a normal using flow:
+
