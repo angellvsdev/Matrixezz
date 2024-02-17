@@ -96,3 +96,10 @@ For this cases, we just use a single matrix to operate, is enough just with fill
 In Matrixezz, the UI is kind with the user, and so easy to perform the operations we want to over the matrix we want to solve. Of course, we implemented security protocols both in the client-side and server-side, this way, we secure the quality and useful of the application for the purposes it was made for. Let's see a normal flux and the preventions of the application in a normal using flow:
 
 # [Demonstration Video](https://i.imgur.com/2WC7TO3)
+
+# 📖 Flags
+To guarantee that the user knows at every moment what he's doing, an also, to know certain rules about the process we making with the included matrix, Matrixezz include security protocols for wrong user inputs, forbidden data or wrong use of the rules according the process. All of these, with his respective flags and advising for the user **(See video above)**, and also, in the case of being making an compound or special operation, Matrixezz include the following flags for the user knowledge:
+- **🔒 Locked Matrix:** This flag, represents when a given matrix is locked at his size, this does mean that the user could not change the rows size neither the columns size of this matrix.
+- **❕ Process Inclusion:** This flag, represents when a given matrix at certain type of operation include an available process guide that the user can use to note and read all the steps included until the solution. **(The process inclusion normally incurs when certain method is kind of 'long' until reach his final state)**.
+- **❗ Fatal Error/Incorrect use of rules**: This flag represents when the given matrix does not respect the rules of the general matrices theorem nor the logic that the given method in execution asks for. Fatal error flag could also appears to notify client-side or server-side errors.
+- **⚠ Warning Flag/Missing Data**: This flag, represents when a given matrix is still waiting for certain data or values to start resolution process. This flag could also appears to notify the incorrect input of matrix values at client-side.
